@@ -2105,59 +2105,10 @@ select:focus-visible {
     cursor: grabbing;
 }
 
-/* Shimmer Hint on Top of Scratch Layer */
-.scratch-cover-hint {
-    position: absolute;
-    z-index: 6;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #483214 0%, #7d5722 100%);
-    color: #fff9ea;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(9.5px, 2.2vw, 11px);
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 8px 20px;
-    border-radius: 30px;
-    border: 1px solid rgba(226, 190, 114, 0.8);
-    box-shadow: 0 6px 18px rgba(60, 40, 15, 0.35);
-    pointer-events: none;
-    white-space: nowrap;
-    animation: scratchCoverPulse 2.5s ease-in-out infinite;
-    transition: opacity 0.4s ease;
-}
-
-@keyframes scratchCoverPulse {
-    0%, 100% {
-        transform: translateX(-50%) scale(1);
-    }
-    50% {
-        transform: translateX(-50%) scale(1.04);
-        box-shadow: 0 8px 25px rgba(184, 149, 85, 0.5);
-    }
-}
-
-.scratch-sparkle {
-    font-size: 13px;
-    color: #f7d58b;
-}
-
 /* Revealed State Transition */
 .countdown-scratch-box.is-revealed #countdownScratchCanvas {
     opacity: 0;
     pointer-events: none;
-}
-
-.countdown-scratch-box.is-revealed .scratch-cover-hint,
-.countdown-scratch-wrapper.is-revealed .scratch-quick-wrap {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
 }
 
 .countdown-revealed-content {
@@ -2184,39 +2135,6 @@ select:focus-visible {
         transform: scale(1);
         opacity: 1;
     }
-}
-
-/* Quick Tap Button */
-.scratch-quick-wrap {
-    margin-top: 14px;
-    text-align: center;
-    transition: opacity 0.4s ease;
-}
-
-.scratch-tap-reveal-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #cba45e 0%, #9e7430 100%);
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 8px 22px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 4px 16px rgba(140, 100, 40, 0.22);
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.scratch-tap-reveal-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(140, 100, 40, 0.32);
-    background: linear-gradient(135deg, #d8b26e 0%, #ad803c 100%);
 }
 
 /* Reception Date Banner */

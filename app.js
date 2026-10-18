@@ -695,34 +695,36 @@ if (countdownScratchBox && countdownScratchCanvas) {
             ctx.lineWidth = 1;
             ctx.strokeRect(13, 13, rect.width - 26, rect.height - 26);
 
-            // Center Ornamental Motif & Instructions
+            // Center Royal Crest & Elegant Single Instruction (No repetition)
             ctx.save();
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
 
-            // Center Sparkle Motif
-            ctx.font = "26px Georgia, serif";
-            ctx.fillStyle = "#6d4a1b";
-            ctx.shadowColor = "rgba(255, 255, 255, 0.75)";
-            ctx.shadowOffsetY = 1;
-            ctx.fillText("✦", rect.width / 2, rect.height / 2 - 24);
+            const centerY = rect.height / 2;
 
-            // Primary Instruction - Dark, Bold, Super Crisp & Readable!
-            ctx.font = "700 13px 'Montserrat', Arial, sans-serif";
-            ctx.fillStyle = "#36220d";
+            // Royal Crest Ornament
+            ctx.font = "20px Georgia, serif";
+            ctx.fillStyle = "#7a531e";
             ctx.shadowColor = "rgba(255, 255, 255, 0.85)";
             ctx.shadowOffsetY = 1;
-            ctx.shadowBlur = 1;
-            ctx.letterSpacing = "2.5px";
-            ctx.fillText("✦  SCRATCH TO REVEAL  ✦", rect.width / 2, rect.height / 2 + 6);
+            ctx.fillText("✦  ❦  ✦", rect.width / 2, centerY - 24);
 
-            // Subtitle Guidance - Clear & Readable
-            ctx.font = "500 11px 'Montserrat', Arial, sans-serif";
-            ctx.fillStyle = "#553a1a";
-            ctx.shadowColor = "rgba(255, 255, 255, 0.6)";
+            // Clean, Bold, Elegant Single Title
+            ctx.font = "600 13px 'Montserrat', Arial, sans-serif";
+            ctx.fillStyle = "#331f0a";
+            ctx.shadowColor = "rgba(255, 255, 255, 0.9)";
             ctx.shadowOffsetY = 1;
-            ctx.letterSpacing = "1px";
-            ctx.fillText("Tap or drag to uncover date & countdown", rect.width / 2, rect.height / 2 + 28);
+            ctx.shadowBlur = 1;
+            ctx.letterSpacing = "3px";
+            ctx.fillText("SCRATCH OR TAP TO REVEAL", rect.width / 2, centerY + 6);
+
+            // Delicate Subtitle
+            ctx.font = "italic 13px 'Cormorant Garamond', Georgia, serif";
+            ctx.fillStyle = "#6b491f";
+            ctx.shadowColor = "rgba(255, 255, 255, 0.7)";
+            ctx.shadowOffsetY = 1;
+            ctx.letterSpacing = "0.5px";
+            ctx.fillText("A special moment awaits you", rect.width / 2, centerY + 30);
             ctx.restore();
         }
 
