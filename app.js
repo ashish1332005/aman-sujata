@@ -345,139 +345,86 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 7. GALLERY SLIDER — AUTO-SCROLL & DYNAMIC DEGREE TILT
-    const galleryImage = document.getElementById("galleryImage");
-    const photoCaption = document.getElementById("photoCaption");
-    const galleryWrapper = document.querySelector(".gallery-image-wrapper");
-    const galleryContainer = document.querySelector(".gallery-container");
-    const prevPhoto = document.getElementById("prevPhoto");
-    const nextPhoto = document.getElementById("nextPhoto");
+    // 7. GALLERY CAROUSEL — MULTI-CARD RESPONSIVE CAROUSEL WITH AUTO-SCROLL
+    const galleryCardsTrack = document.getElementById("galleryCardsTrack");
+    const prevPhotoBtn = document.getElementById("prevPhoto");
+    const nextPhotoBtn = document.getElementById("nextPhoto");
+    const galleryCards = document.querySelectorAll(".gallery-photo-card");
 
-    const galleryPhotos = [
-        {
-            src: "assets/marriage1.jpeg",
-            caption: "A beautiful beginning",
-            tilt: -2.8
-        },
-        {
-            src: "assets/marriage2.jpeg",
-            caption: "Moments to cherish",
-            tilt: 2.5
-        },
-        {
-            src: "assets/marriage3.jpeg",
-            caption: "Together in love",
-            tilt: -1.8
-        },
-        {
-            src: "assets/marriage4.jpeg",
-            caption: "Memories made with love",
-            tilt: 2.4
-        },
-        {
-            src: "assets/marriage5.jpeg",
-            caption: "A celebration of togetherness",
-            tilt: -2.2
-        },
-        {
-            src: "assets/marriage6.jpeg",
-            caption: "Forever starts here",
-            tilt: 1.8
+    let galleryAutoTimer = null;
+    const GALLERY_AUTO_DELAY = 3800;
+
+    function getCardScrollStep() {
+        if (!galleryCardsTrack) return 300;
+        const firstCard = galleryCardsTrack.querySelector(".gallery-photo-card");
+        if (firstCard) {
+            return firstCard.offsetWidth + 24;
         }
-    ];
-
-    let currentPhoto = 0;
-    let gallerySlideTimer = null;
-    let isTransitioning = false;
-    const AUTO_SLIDE_DELAY = 3600;
-
-    function applyPhotoTilt(angle) {
-        if (!galleryWrapper) return;
-        galleryWrapper.style.setProperty("--photo-tilt", `${angle}deg`);
+        return 300;
     }
 
-    function showPhoto(index, direction = 1) {
-        if (!galleryImage || !galleryPhotos.length || isTransitioning) return;
+    function scrollGallery(direction = 1) {
+        if (!galleryCardsTrack) return;
+        const step = getCardScrollStep() * direction;
+        const maxScroll = galleryCardsTrack.scrollWidth - galleryCardsTrack.clientWidth;
 
-        isTransitioning = true;
-        currentPhoto = (index + galleryPhotos.length) % galleryPhotos.length;
-        const photo = galleryPhotos[currentPhoto];
-
-        // Smooth out transition
-        galleryImage.classList.add("is-changing");
-        if (photoCaption) {
-            photoCaption.style.opacity = "0";
-            photoCaption.style.transform = "translateY(6px)";
-        }
-
-        // Apply new organic degree tilt to card
-        applyPhotoTilt(photo.tilt);
-
-        window.setTimeout(() => {
-            galleryImage.src = photo.src;
-            galleryImage.alt = photo.caption;
-
-            if (photoCaption) {
-                photoCaption.textContent = photo.caption;
-                photoCaption.style.opacity = "1";
-                photoCaption.style.transform = "translateY(0)";
-            }
-
-            galleryImage.classList.remove("is-changing");
-            isTransitioning = false;
-        }, 220);
-
-        restartAutoSlide();
-    }
-
-    function startAutoSlide() {
-        stopAutoSlide();
-        gallerySlideTimer = window.setInterval(() => {
-            showPhoto(currentPhoto + 1, 1);
-        }, AUTO_SLIDE_DELAY);
-    }
-
-    function stopAutoSlide() {
-        if (gallerySlideTimer) {
-            window.clearInterval(gallerySlideTimer);
-            gallerySlideTimer = null;
+        // If at end and scrolling forward, wrap to start
+        if (direction > 0 && galleryCardsTrack.scrollLeft >= maxScroll - 15) {
+            galleryCardsTrack.scrollTo({ left: 0, behavior: "smooth" });
+        } else if (direction < 0 && galleryCardsTrack.scrollLeft <= 15) {
+            galleryCardsTrack.scrollTo({ left: maxScroll, behavior: "smooth" });
+        } else {
+            galleryCardsTrack.scrollBy({ left: step, behavior: "smooth" });
         }
     }
 
-    function restartAutoSlide() {
-        stopAutoSlide();
-        startAutoSlide();
+    function startGalleryAutoScroll() {
+        stopGalleryAutoScroll();
+        galleryAutoTimer = window.setInterval(() => {
+            scrollGallery(1);
+        }, GALLERY_AUTO_DELAY);
     }
 
-    if (galleryImage) {
-        applyPhotoTilt(galleryPhotos[0].tilt);
+    function stopGalleryAutoScroll() {
+        if (galleryAutoTimer) {
+            window.clearInterval(galleryAutoTimer);
+            galleryAutoTimer = null;
+        }
+    }
 
-        if (prevPhoto) {
-            prevPhoto.addEventListener("click", () => {
-                showPhoto(currentPhoto - 1, -1);
+    if (galleryCardsTrack) {
+        if (prevPhotoBtn) {
+            prevPhotoBtn.addEventListener("click", () => {
+                scrollGallery(-1);
+                stopGalleryAutoScroll();
+                startGalleryAutoScroll();
             });
         }
 
-        if (nextPhoto) {
-            nextPhoto.addEventListener("click", () => {
-                showPhoto(currentPhoto + 1, 1);
+        if (nextPhotoBtn) {
+            nextPhotoBtn.addEventListener("click", () => {
+                scrollGallery(1);
+                stopGalleryAutoScroll();
+                startGalleryAutoScroll();
             });
         }
 
-        // Pause on hover or touch, resume on leave
-        if (galleryContainer) {
-            galleryContainer.addEventListener("mouseenter", stopAutoSlide);
-            galleryContainer.addEventListener("mouseleave", startAutoSlide);
-            galleryContainer.addEventListener("touchstart", stopAutoSlide, { passive: true });
-            galleryContainer.addEventListener("touchend", startAutoSlide, { passive: true });
-        }
+        // Pause on user hover or touch interaction
+        galleryCardsTrack.addEventListener("mouseenter", stopGalleryAutoScroll);
+        galleryCardsTrack.addEventListener("mouseleave", startGalleryAutoScroll);
+        galleryCardsTrack.addEventListener("touchstart", stopGalleryAutoScroll, { passive: true });
+        galleryCardsTrack.addEventListener("touchend", startGalleryAutoScroll, { passive: true });
 
-        // Start auto slideshow
-        startAutoSlide();
-
-        galleryImage.addEventListener("error", () => {
-            galleryImage.alt = "Gallery photo could not be loaded";
+        // Highlight card on click
+        galleryCards.forEach(card => {
+            card.addEventListener("click", () => {
+                galleryCards.forEach(c => c.classList.remove("is-active"));
+                card.classList.add("is-active");
+            });
         });
+
+        // Start auto scroll
+        startGalleryAutoScroll();
     }
 
     // 7B. ROYAL TIMELINE SCROLL OBSERVER — DYNAMIC DOT HIGHLIGHT ON SCROLL

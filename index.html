@@ -113,15 +113,12 @@
 
 </section>
 
-        <!-- COUNTDOWN + RECEPTION DATE SCRATCH CARD -->
+        <!-- COUNTDOWN SECTION — RESPONSIVE & CLEAN LUXURY -->
         <section id="countdown" class="section countdown-section">
 
             <div class="section-heading reveal">
                 <p class="eyebrow">SAVE OUR SPECIAL DATE</p>
                 <h2>Counting Down to Forever</h2>
-                <p class="countdown-description">
-                    A little surprise awaits you below
-                </p>
                 <div class="heading-ornament" aria-hidden="true">
                     <span></span>
                     <b>✦</b>
@@ -129,44 +126,45 @@
                 </div>
             </div>
 
-            <div class="countdown-scratch-card reveal" id="countdownScratchCard">
+            <div class="countdown-container reveal">
 
-                <div class="countdown-date-reveal">
+                <!-- Reception Date Banner -->
+                <div class="countdown-date-badge">
                     <p class="countdown-date-label">TOAST TO LOVE · RECEPTION</p>
                     <h3 class="revealed-reception-date">17 December 2026</h3>
-                    <span class="countdown-date-heart" aria-hidden="true">♥</span>
+                    <div class="countdown-date-ornament" aria-hidden="true">
+                        <span class="ornament-line"></span>
+                        <span class="countdown-date-heart">♥</span>
+                        <span class="ornament-line"></span>
+                    </div>
                 </div>
 
+                <!-- 4 Responsive Countdown Tiles -->
                 <div
-                    class="countdown"
+                    class="countdown countdown-grid-responsive"
                     id="weddingCountdown"
                     aria-label="Countdown to the reception"
                 >
-                    <div class="countdown-item">
-                        <span id="days">00</span>
-                        <small>Days</small>
+                    <div class="countdown-tile">
+                        <span id="days" class="countdown-number">00</span>
+                        <small class="countdown-label">Days</small>
                     </div>
 
-                    <div class="countdown-item">
-                        <span id="hours">00</span>
-                        <small>Hours</small>
+                    <div class="countdown-tile">
+                        <span id="hours" class="countdown-number">00</span>
+                        <small class="countdown-label">Hours</small>
                     </div>
 
-                    <div class="countdown-item">
-                        <span id="minutes">00</span>
-                        <small>Minutes</small>
+                    <div class="countdown-tile">
+                        <span id="minutes" class="countdown-number">00</span>
+                        <small class="countdown-label">Minutes</small>
                     </div>
 
-                    <div class="countdown-item">
-                        <span id="seconds">00</span>
-                        <small>Seconds</small>
+                    <div class="countdown-tile">
+                        <span id="seconds" class="countdown-number">00</span>
+                        <small class="countdown-label">Seconds</small>
                     </div>
                 </div>
-
-                <canvas
-                    id="countdownScratchCanvas"
-                    aria-label="Scratch or tap to reveal reception date and countdown"
-                ></canvas>
 
             </div>
 
@@ -320,47 +318,104 @@
             </div>
         </section>
 
-        <!-- PHOTO GALLERY -->
+        <!-- PHOTO GALLERY — RESPONSIVE CARDS CAROUSEL -->
         <section id="gallery" class="section gallery-section">
 
             <div class="section-heading reveal">
                 <p class="eyebrow">MOMENTS OF LOVE</p>
                 <h2>Our Gallery</h2>
                 <p>A few beautiful moments to cherish forever.</p>
+                <div class="heading-ornament" aria-hidden="true">
+                    <span></span>
+                    <b>✦</b>
+                    <span></span>
+                </div>
             </div>
 
-            <div class="gallery-container reveal">
+            <div class="gallery-cards-container reveal">
 
-                <div class="gallery-image-wrapper">
-                    <img
-                        id="galleryImage"
-                        src="assets/marriage1.jpeg"
-                        alt="Wedding gallery photograph 1"
-                        loading="lazy"
-                    >
+                <!-- Horizontal scrolling cards track -->
+                <div class="gallery-cards-track" id="galleryCardsTrack" tabindex="0" aria-label="Wedding Photo Gallery Carousel">
+
+                    <!-- Card 1 -->
+                    <article class="gallery-photo-card card-tilt-1" data-index="0">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage1.jpeg" alt="Wedding photograph 1 - A Beautiful Beginning" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">A Beautiful Beginning</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="gallery-photo-card card-tilt-2" data-index="1">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage2.jpeg" alt="Wedding photograph 2 - Love & Laughter" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">Love &amp; Laughter</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="gallery-photo-card card-tilt-3" data-index="2">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage3.jpeg" alt="Wedding photograph 3 - Hand in Hand" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">Hand in Hand</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="gallery-photo-card card-tilt-4" data-index="3">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage4.jpeg" alt="Wedding photograph 4 - Two Souls, One Journey" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">Two Souls, One Journey</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="gallery-photo-card card-tilt-5" data-index="4">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage5.jpeg" alt="Wedding photograph 5 - Cherished Moments" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">Cherished Moments</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="gallery-photo-card card-tilt-6" data-index="5">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-img-wrap">
+                                <img src="assets/marriage6.jpeg" alt="Wedding photograph 6 - Forever Begins Here" loading="lazy">
+                            </div>
+                            <p class="photo-card-caption">Forever Begins Here</p>
+                        </div>
+                    </article>
+
                 </div>
 
-                <p id="photoCaption" class="photo-caption">
-                    A beautiful beginning
-                </p>
-
+                <!-- Gallery Controls (Left & Right Golden Arrows) -->
                 <div class="gallery-controls">
-
                     <button
                         id="prevPhoto"
                         class="gallery-nav-btn gallery-prev-btn"
                         type="button"
-                        aria-label="Previous photo"
+                        aria-label="Scroll left to previous photos"
                     >←</button>
 
                     <button
                         id="nextPhoto"
                         class="gallery-nav-btn gallery-next-btn"
                         type="button"
-                        aria-label="Next photo"
+                        aria-label="Scroll right to next photos"
                     >→</button>
-
                 </div>
+
             </div>
         </section>
 

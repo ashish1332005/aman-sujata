@@ -777,79 +777,120 @@ select:focus-visible {
 }
 
 /* =========================================
-   GALLERY — LUXURY TILTED POLAROID ALBUM
+   GALLERY — LUXURY RESPONSIVE PHOTO CARDS CAROUSEL
 ========================================= */
 
 .gallery-section {
-    background: var(--white);
-    padding: 95px 24px 105px;
+    background: #fdfaf4;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(217, 189, 130, 0.12), transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(217, 189, 130, 0.12), transparent 40%);
+    padding: clamp(70px, 9vw, 105px) 16px;
     position: relative;
     overflow: hidden;
-}
-
-.gallery-container {
-    width: min(720px, 94vw);
-    margin: 0 auto;
     text-align: center;
-    position: relative;
 }
 
-/* Tilted Luxury Photo Frame */
-.gallery-image-wrapper {
+.gallery-cards-container {
     position: relative;
-    height: clamp(280px, 50vw, 460px);
-    overflow: hidden;
-    padding: 0;
-    border: 12px solid #fffdfa;
-    outline: 1px solid rgba(184, 149, 85, 0.35);
-    background: #fdfaf3;
-    border-radius: 6px;
-    box-shadow:
-        0 24px 55px -10px rgba(65, 45, 25, 0.22),
-        0 8px 22px -5px rgba(65, 45, 25, 0.12),
-        inset 0 0 15px rgba(210, 180, 140, 0.12);
-    transform: rotate(var(--photo-tilt, -2.5deg));
-    transition:
-        transform 0.65s cubic-bezier(0.2, 0.8, 0.25, 1),
-        box-shadow 0.65s ease,
-        border-color 0.4s ease;
+    width: 100%;
+    max-width: 1140px;
+    margin: 32px auto 0;
+}
+
+/* Horizontal scrolling cards track */
+.gallery-cards-track {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3.2vw, 30px);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 28px 18px 36px;
+    scrollbar-width: none;
+}
+
+.gallery-cards-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Polaroid Photo Card */
+.gallery-photo-card {
+    flex: 0 0 clamp(230px, 68vw, 300px);
+    scroll-snap-align: center;
+    box-sizing: border-box;
     cursor: pointer;
+    transition:
+        transform 0.5s cubic-bezier(0.2, 0.8, 0.25, 1),
+        box-shadow 0.4s ease;
 }
 
-.gallery-image-wrapper:hover {
-    transform: rotate(0deg) scale(1.02);
+/* Natural individual card tilts */
+.card-tilt-1 { transform: rotate(-2.4deg); }
+.card-tilt-2 { transform: rotate(1.9deg); }
+.card-tilt-3 { transform: rotate(-1.6deg); }
+.card-tilt-4 { transform: rotate(2.3deg); }
+.card-tilt-5 { transform: rotate(-2.1deg); }
+.card-tilt-6 { transform: rotate(1.7deg); }
+
+.gallery-photo-card:hover,
+.gallery-photo-card.is-active {
+    transform: rotate(0deg) scale(1.04) translateY(-8px);
+    z-index: 10;
+}
+
+.photo-card-inner {
+    background: #ffffff;
+    border: 1px solid rgba(195, 160, 95, 0.38);
+    border-radius: 12px;
+    padding: 11px 11px 16px;
     box-shadow:
-        0 30px 65px -8px rgba(65, 45, 25, 0.3),
-        0 12px 28px -4px rgba(65, 45, 25, 0.18);
-    border-color: #ffffff;
+        0 16px 36px rgba(70, 50, 25, 0.12),
+        0 4px 12px rgba(70, 50, 25, 0.06);
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
-.gallery-image-wrapper img {
+.gallery-photo-card:hover .photo-card-inner,
+.gallery-photo-card.is-active .photo-card-inner {
+    border-color: rgba(184, 149, 85, 0.75);
+    box-shadow:
+        0 24px 50px rgba(166, 124, 54, 0.24),
+        0 8px 20px rgba(70, 50, 25, 0.08);
+}
+
+.photo-card-img-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5eedf;
+}
+
+.photo-card-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition:
-        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.4s ease;
-    will-change: transform, opacity, filter;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.gallery-image-wrapper img.is-changing {
-    opacity: 0;
-    transform: scale(0.96);
-    filter: blur(5px);
+.gallery-photo-card:hover .photo-card-img-wrap img {
+    transform: scale(1.06);
 }
 
-.photo-caption {
-    margin-top: 22px;
+.photo-card-caption {
+    margin: 14px 0 2px;
     color: var(--gold-dark);
     font-family: var(--heading-font);
-    font-size: clamp(22px, 3.5vw, 26px);
+    font-size: clamp(18px, 2.6vw, 22px);
     font-style: italic;
-    letter-spacing: 0.5px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    line-height: 1.25;
+    text-align: center;
 }
 
 /* Two Elegant Golden Arrow Buttons */
@@ -858,7 +899,7 @@ select:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 24px;
-    margin-top: 22px;
+    margin-top: 10px;
 }
 
 .gallery-nav-btn {
@@ -1354,27 +1395,6 @@ select:focus-visible {
         font-size: 34px;
     }
 
-    .countdown {
-        width: min(100%, 290px);
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-    }
-
-    .countdown-item {
-        min-height: 82px;
-        padding: 10px 5px;
-    }
-
-    .countdown-item span {
-        font-size: 29px;
-    }
-
-    .countdown-item small {
-        margin-top: 5px;
-        font-size: 8px;
-        letter-spacing: 1.3px;
-    }
-
     .story-grid {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -1502,24 +1522,6 @@ select:focus-visible {
         top: 53px;
         width: 36px;
         height: 36px;
-    }
-
-    .countdown {
-        width: min(100%, 250px);
-        gap: 8px;
-    }
-
-    .countdown-item {
-        min-height: 76px;
-    }
-
-    .countdown-item span {
-        font-size: 26px;
-    }
-
-    .countdown-item small {
-        font-size: 7px;
-        letter-spacing: 1px;
     }
 
     .couple-names {
@@ -2045,72 +2047,69 @@ select:focus-visible {
     line-height: 1;
 }
 
-/* Scratch Card Container - Stable coordinates, no wobble */
-.countdown-scratch-card {
+/* Responsive Luxury Countdown Container (No clunky box, seamless on all devices) */
+.countdown-container {
     position: relative;
-    isolation: isolate;
-    width: min(620px, 94vw);
-    min-height: 250px;
-    margin: 28px auto 0;
-    padding: 30px 20px 36px;
-    overflow: hidden;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #fffefb 0%, #f6eee0 100%);
-    border: 1.5px solid rgba(184, 149, 85, 0.55);
-    box-shadow:
-        0 18px 45px rgba(85, 60, 25, 0.12),
-        0 6px 18px rgba(85, 60, 25, 0.08),
-        inset 0 0 35px rgba(255, 255, 255, 0.95);
-    animation: scratchBorderGlow 4s ease-in-out infinite alternate;
-    transition: box-shadow 0.35s ease;
+    width: 100%;
+    max-width: 660px;
+    margin: 32px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    padding: 0 12px;
+    box-sizing: border-box;
 }
 
-@keyframes scratchBorderGlow {
-    0% {
-        border-color: rgba(184, 149, 85, 0.45);
-        box-shadow: 0 18px 45px rgba(85, 60, 25, 0.12), inset 0 0 30px rgba(255, 255, 255, 0.9);
-    }
-    100% {
-        border-color: rgba(217, 189, 130, 0.9);
-        box-shadow: 0 22px 50px rgba(184, 149, 85, 0.22), 0 0 20px rgba(217, 189, 130, 0.3), inset 0 0 35px rgba(255, 255, 255, 0.95);
-    }
-}
-
-/* Revealed reception date */
-.countdown-date-reveal {
-    position: relative;
-    z-index: 1;
+/* Reception Date Banner */
+.countdown-date-badge {
     text-align: center;
-    padding: 0 8px 16px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid rgba(184, 149, 85, 0.28);
+    width: 100%;
 }
 
 .countdown-date-label {
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     color: #8c6020;
     font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
+    font-size: clamp(9.5px, 2.2vw, 11px);
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
 }
 
-.countdown-date-reveal h3,
 .revealed-reception-date {
     margin: 0;
     color: #3b2812;
     font-family: var(--heading-font);
     font-weight: 600;
-    font-size: clamp(28px, 5vw, 42px);
+    font-size: clamp(28px, 6.5vw, 44px);
     line-height: 1.2;
 }
 
-.countdown-date-heart {
+.countdown-date-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.countdown-date-ornament .ornament-line {
     display: block;
-    margin-top: 6px;
+    width: 44px;
+    max-width: 14vw;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #b88e44);
+}
+
+.countdown-date-ornament .ornament-line:last-child {
+    background: linear-gradient(to left, transparent, #b88e44);
+}
+
+.countdown-date-heart {
     color: #b89148;
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1;
     animation: heartPulse 1.8s ease-in-out infinite;
 }
 
@@ -2123,224 +2122,61 @@ select:focus-visible {
     }
 }
 
-/* Live Countdown Timers */
-.countdown-scratch-card .countdown {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    width: 100%;
-    max-width: 540px;
-    margin: 0 auto;
+/* 4 Responsive Countdown Tiles — Always 4 columns, never breaks */
+.countdown-grid-responsive {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 2.6vw, 18px) !important;
+    width: 100% !important;
+    max-width: 580px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
 }
 
-.countdown-scratch-card .countdown-item {
+.countdown-tile {
     display: flex;
-    min-width: 0;
-    min-height: 90px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6px 4px;
-    border-right: 1px solid rgba(184, 149, 85, 0.3);
-    background: transparent;
+    min-width: 0;
+    min-height: clamp(80px, 16vw, 108px);
+    padding: clamp(12px, 2.8vw, 20px) clamp(4px, 1.6vw, 12px);
+    background: linear-gradient(145deg, #ffffff 0%, #faf3e8 100%);
+    border: 1px solid rgba(195, 160, 95, 0.45);
+    border-radius: clamp(10px, 2.4vw, 16px);
+    box-shadow:
+        0 10px 24px rgba(85, 60, 25, 0.08),
+        0 2px 6px rgba(85, 60, 25, 0.04),
+        inset 0 0 15px rgba(255, 255, 255, 0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.countdown-scratch-card .countdown-item:last-child {
-    border-right: none;
+.countdown-tile:hover {
+    transform: translateY(-3px);
+    border-color: rgba(195, 160, 95, 0.8);
+    box-shadow: 0 14px 30px rgba(184, 149, 85, 0.22);
 }
 
-.countdown-scratch-card .countdown-item span {
+.countdown-number {
+    display: block;
     color: #845d22;
     font-family: var(--heading-font);
-    font-size: clamp(26px, 5vw, 42px);
+    font-size: clamp(26px, 6vw, 44px);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.05;
     font-variant-numeric: tabular-nums;
 }
 
-.countdown-scratch-card .countdown-item small {
-    margin-top: 7px;
-    color: #55412c;
+.countdown-label {
+    display: block;
+    margin-top: 6px;
+    color: #6a4f28;
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(8px, 1.8vw, 11px);
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: clamp(1px, 0.4vw, 2px);
     text-transform: uppercase;
-}
-
-/* Golden Scratch Canvas */
-#countdownScratchCanvas {
-    position: absolute;
-    z-index: 5;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: grab;
-    touch-action: none;
-    border-radius: inherit;
-    transition: opacity 0.5s ease;
-}
-
-#countdownScratchCanvas:active {
-    cursor: grabbing;
-}
-
-/* Floating interactive Hint on the Scratch Layer */
-.countdown-scratch-hint {
-    position: absolute;
-    z-index: 6;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    background: linear-gradient(135deg, #442e12 0%, #755120 100%);
-    color: #fff9eb;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 8px 22px;
-    border-radius: 30px;
-    border: 1.5px solid #e2be72;
-    box-shadow: 0 6px 20px rgba(60, 40, 15, 0.35);
-    cursor: pointer;
-    pointer-events: auto;
-    animation: scratchHintPulse 2.2s ease-in-out infinite;
-    transition: transform 0.25s ease, background 0.25s ease;
-}
-
-.countdown-scratch-hint:hover {
-    transform: translateX(-50%) scale(1.05);
-    background: linear-gradient(135deg, #583c18 0%, #8c6227 100%);
-}
-
-@keyframes scratchHintPulse {
-    0%, 100% {
-        transform: translateX(-50%) scale(1);
-        box-shadow: 0 6px 20px rgba(60, 40, 15, 0.35);
-    }
-    50% {
-        transform: translateX(-50%) scale(1.04);
-        box-shadow: 0 8px 26px rgba(184, 149, 85, 0.55), 0 0 16px rgba(226, 190, 114, 0.4);
-    }
-}
-
-.scratch-sparkle {
-    font-size: 13px;
-    animation: sparkleTwinkle 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes sparkleTwinkle {
-    from {
-        transform: scale(0.9) rotate(0deg);
-        opacity: 0.8;
-    }
-    to {
-        transform: scale(1.2) rotate(15deg);
-        opacity: 1;
-    }
-}
-
-/* Quick Reveal Button */
-.scratch-quick-action {
-    margin-top: 22px;
-    text-align: center;
-}
-
-.scratch-reveal-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #cba45e 0%, #9e7430 100%);
-    color: #ffffff;
-    font-family: var(--body-font);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 11px 26px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 6px 18px rgba(140, 100, 40, 0.22);
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
-.scratch-reveal-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(140, 100, 40, 0.32);
-    background: linear-gradient(135deg, #d8b26e 0%, #ad803c 100%);
-}
-
-/* Revealed State Transition */
-.countdown-scratch-card.is-revealed {
-    animation: revealedPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-@keyframes revealedPop {
-    0% {
-        transform: scale(0.97);
-    }
-    50% {
-        transform: scale(1.02);
-        box-shadow: 0 25px 60px rgba(184, 149, 85, 0.35), 0 0 35px rgba(217, 189, 130, 0.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.countdown-scratch-card.is-revealed #countdownScratchCanvas {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.countdown-scratch-card.is-revealed .countdown-scratch-hint,
-.countdown-scratch-card.is-revealed ~ .scratch-quick-action {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .countdown-scratch-card {
-        min-height: 220px;
-        padding: 22px 12px 42px;
-    }
-
-    .countdown-date-reveal {
-        padding-bottom: 12px;
-        margin-bottom: 12px;
-    }
-
-    .countdown-date-label {
-        font-size: 8.5px;
-        letter-spacing: 2.2px;
-    }
-
-    .countdown-date-reveal h3,
-    .revealed-reception-date {
-        font-size: clamp(23px, 6vw, 30px);
-    }
-
-    .countdown-scratch-card .countdown-item {
-        min-height: 72px;
-        padding: 5px 2px;
-    }
-
-    .countdown-scratch-card .countdown-item span {
-        font-size: clamp(20px, 5.8vw, 30px);
-    }
-
-    .countdown-scratch-card .countdown-item small {
-        font-size: clamp(7.5px, 2vw, 9.5px);
-        letter-spacing: 0.5px;
-    }
 }
 
 
