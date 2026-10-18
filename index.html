@@ -113,7 +113,7 @@
 
 </section>
 
-        <!-- COUNTDOWN SECTION — RESPONSIVE & CLEAN LUXURY -->
+        <!-- COUNTDOWN SECTION — RESPONSIVE SCRATCH TO REVEAL -->
         <section id="countdown" class="section countdown-section">
 
             <div class="section-heading reveal">
@@ -126,44 +126,71 @@
                 </div>
             </div>
 
-            <div class="countdown-container reveal">
+            <!-- Responsive Interactive Scratch Box -->
+            <div class="countdown-scratch-wrapper reveal">
+                
+                <div class="countdown-scratch-box" id="countdownScratchBox" aria-label="Scratch card box to reveal reception date and countdown">
+                    
+                    <!-- Golden Scratch Foil Canvas Layer (Covers Date & Countdown before scratch) -->
+                    <canvas id="countdownScratchCanvas" aria-label="Scratch to reveal date and countdown"></canvas>
 
-                <!-- Reception Date Banner -->
-                <div class="countdown-date-badge">
-                    <p class="countdown-date-label">TOAST TO LOVE · RECEPTION</p>
-                    <h3 class="revealed-reception-date">17 December 2026</h3>
-                    <div class="countdown-date-ornament" aria-hidden="true">
-                        <span class="ornament-line"></span>
-                        <span class="countdown-date-heart">♥</span>
-                        <span class="ornament-line"></span>
+                    <!-- Shimmering Scratch Instruction Hint -->
+                    <div class="scratch-cover-hint" id="scratchCoverHint" aria-hidden="true">
+                        <span class="scratch-sparkle">✦</span>
+                        <span>Scratch to Reveal Date &amp; Countdown</span>
+                        <span class="scratch-sparkle">✦</span>
                     </div>
+
+                    <!-- Underneath Revealed Content: Reception Date & 4 Countdown Tiles -->
+                    <div class="countdown-revealed-content" id="countdownRevealedContent">
+                        
+                        <!-- Reception Date Banner -->
+                        <div class="countdown-date-badge">
+                            <p class="countdown-date-label">TOAST TO LOVE · RECEPTION</p>
+                            <h3 class="revealed-reception-date">17 December 2026</h3>
+                            <div class="countdown-date-ornament" aria-hidden="true">
+                                <span class="ornament-line"></span>
+                                <span class="countdown-date-heart">♥</span>
+                                <span class="ornament-line"></span>
+                            </div>
+                        </div>
+
+                        <!-- 4 Responsive Countdown Tiles -->
+                        <div
+                            class="countdown countdown-grid-responsive"
+                            id="weddingCountdown"
+                            aria-label="Countdown to the reception"
+                        >
+                            <div class="countdown-tile">
+                                <span id="days" class="countdown-number">00</span>
+                                <small class="countdown-label">Days</small>
+                            </div>
+
+                            <div class="countdown-tile">
+                                <span id="hours" class="countdown-number">00</span>
+                                <small class="countdown-label">Hours</small>
+                            </div>
+
+                            <div class="countdown-tile">
+                                <span id="minutes" class="countdown-number">00</span>
+                                <small class="countdown-label">Minutes</small>
+                            </div>
+
+                            <div class="countdown-tile">
+                                <span id="seconds" class="countdown-number">00</span>
+                                <small class="countdown-label">Seconds</small>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <!-- 4 Responsive Countdown Tiles -->
-                <div
-                    class="countdown countdown-grid-responsive"
-                    id="weddingCountdown"
-                    aria-label="Countdown to the reception"
-                >
-                    <div class="countdown-tile">
-                        <span id="days" class="countdown-number">00</span>
-                        <small class="countdown-label">Days</small>
-                    </div>
-
-                    <div class="countdown-tile">
-                        <span id="hours" class="countdown-number">00</span>
-                        <small class="countdown-label">Hours</small>
-                    </div>
-
-                    <div class="countdown-tile">
-                        <span id="minutes" class="countdown-number">00</span>
-                        <small class="countdown-label">Minutes</small>
-                    </div>
-
-                    <div class="countdown-tile">
-                        <span id="seconds" class="countdown-number">00</span>
-                        <small class="countdown-label">Seconds</small>
-                    </div>
+                <!-- Quick Tap-To-Reveal Button -->
+                <div class="scratch-quick-wrap" id="scratchQuickWrap">
+                    <button type="button" class="scratch-tap-reveal-btn" id="scratchTapRevealBtn" aria-label="Tap to quickly reveal date and countdown">
+                        <span>✨ Tap to Reveal</span>
+                    </button>
                 </div>
 
             </div>

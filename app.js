@@ -635,12 +635,14 @@ function createScratchSparkle(x, y, parent) {
 // =========================================
 // 3. COUNTDOWN SCRATCH CARD ENGINE (IMPROVED)
 // =========================================
-const countdownScratchCard = document.getElementById("countdownScratchCard");
+const countdownScratchBox = document.getElementById("countdownScratchBox") || document.getElementById("countdownScratchCard");
 const countdownScratchCanvas = document.getElementById("countdownScratchCanvas");
+const scratchTapRevealBtn = document.getElementById("scratchTapRevealBtn");
+const countdownScratchWrapper = document.querySelector(".countdown-scratch-wrapper");
 
 let globalSetupCountdownScratch = null;
 
-if (countdownScratchCard && countdownScratchCanvas) {
+if (countdownScratchBox && countdownScratchCanvas) {
     const ctx = countdownScratchCanvas.getContext("2d", { willReadFrequently: true });
 
     if (ctx) {
@@ -654,7 +656,7 @@ if (countdownScratchCard && countdownScratchCanvas) {
         function setupCountdownScratch() {
             if (isRevealed) return;
 
-            const rect = countdownScratchCard.getBoundingClientRect();
+            const rect = countdownScratchBox.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) return;
 
             const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -693,7 +695,7 @@ if (countdownScratchCard && countdownScratchCanvas) {
             ctx.lineWidth = 1;
             ctx.strokeRect(13, 13, rect.width - 26, rect.height - 26);
 
-            // Center Ornamental Icon
+            // Center Ornamental Motif & Instructions
             ctx.save();
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
@@ -720,7 +722,7 @@ if (countdownScratchCard && countdownScratchCanvas) {
             ctx.shadowColor = "rgba(255, 255, 255, 0.6)";
             ctx.shadowOffsetY = 1;
             ctx.letterSpacing = "1px";
-            ctx.fillText("Tap or drag to uncover", rect.width / 2, rect.height / 2 + 28);
+            ctx.fillText("Tap or drag to uncover date & countdown", rect.width / 2, rect.height / 2 + 28);
             ctx.restore();
         }
 
@@ -748,7 +750,7 @@ if (countdownScratchCard && countdownScratchCanvas) {
             ctx.globalCompositeOperation = "destination-out";
             ctx.lineCap = "round";
             ctx.lineJoin = "round";
-            ctx.lineWidth = 48;
+            ctx.lineWidth = 50;
 
             ctx.beginPath();
             if (lastPoint) {
@@ -760,13 +762,13 @@ if (countdownScratchCard && countdownScratchCanvas) {
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.arc(point.x, point.y, 24, 0, Math.PI * 2);
+            ctx.arc(point.x, point.y, 25, 0, Math.PI * 2);
             ctx.fill();
 
             // Emit sparkle effect
             sparkleCounter++;
             if (sparkleCounter % 3 === 0) {
-                createScratchSparkle(point.x, point.y, countdownScratchCard);
+                createScratchSparkle(point.x, point.y, countdownScratchBox);
             }
 
             lastPoint = point;
@@ -802,7 +804,10 @@ if (countdownScratchCard && countdownScratchCanvas) {
             isScratching = false;
             lastPoint = null;
 
-            countdownScratchCard.classList.add("is-revealed");
+            countdownScratchBox.classList.add("is-revealed");
+            if (countdownScratchWrapper) {
+                countdownScratchWrapper.classList.add("is-revealed");
+            }
             countdownScratchCanvas.style.transition = "opacity 0.6s ease";
             countdownScratchCanvas.style.opacity = "0";
             countdownScratchCanvas.style.pointerEvents = "none";
@@ -810,6 +815,11 @@ if (countdownScratchCard && countdownScratchCanvas) {
             setTimeout(() => {
                 ctx.clearRect(0, 0, countdownScratchCanvas.width, countdownScratchCanvas.height);
             }, 650);
+
+            // Make sure countdown timer is updated right away
+            if (typeof updateCountdown === "function") {
+                updateCountdown();
+            }
 
             // Celebration Confetti!
             launchWeddingConfetti();
@@ -874,6 +884,13 @@ if (countdownScratchCard && countdownScratchCanvas) {
             if (!isRevealed) revealCountdown();
         });
 
+        // Quick Tap Button
+        if (scratchTapRevealBtn) {
+            scratchTapRevealBtn.addEventListener("click", () => {
+                if (!isRevealed) revealCountdown();
+            });
+        }
+
         // Initialize scratch layer
         setupCountdownScratch();
 
@@ -891,7 +908,7 @@ if (countdownScratchCard && countdownScratchCanvas) {
                     }
                 });
             }, { threshold: 0.1 });
-            countdownObserver.observe(countdownScratchCard);
+            countdownObserver.observe(countdownScratchBox);
         }
     }
 }
