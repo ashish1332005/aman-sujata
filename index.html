@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sujata Malik & Aman Mallick | Wedding Invitation</title>
+    <meta
+        name="description"
+        content="Join Sujata Malik and Aman Mallick at Punarnava Resort, Dehradun, on December 16 and 17, 2026, to celebrate their joyous commitment."
+    >
+    <meta name="theme-color" content="#fbf8f1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Website Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="locked">
+
+    <!-- Golden Particle Animation -->
+    <div id="goldParticles" aria-hidden="true"></div>
+
+<!-- ENVELOPE OPENING INTRO -->
+     
+<!-- VIDEO INTRO -->
+<section id="intro" class="intro video-intro" aria-label="Wedding video intro">
+
+    <video
+        id="introVideo"
+        class="intro-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        aria-label="Wedding invitation video"
+    >
+        <source src="assets/video1.mp4" type="video/mp4">
+        Your browser does not support this video.
+    </video>
+
+    <div class="video-overlay" aria-hidden="true"></div>
+
+    <button
+        id="skipIntro"
+        class="skip-intro-button"
+        type="button"
+    >
+        Skip Intro →
+    </button>
+
+</section>
+
+    <!-- MAIN WEDDING WEBSITE -->
+    <main id="weddingSite" class="wedding-site">
+
+
+<!-- WEDDING INVITATION HERO -->
+<section id="home" class="hero invitation-hero">
+
+    <!-- Ambient glowing backdrop -->
+    <div class="invitation-ambient" aria-hidden="true"></div>
+
+    <!-- 3D Interactive Card Container -->
+    <div class="invitation-card-container reveal">
+        <article class="sample-invitation-card" id="invitationCard" aria-label="Wedding Invitation Card">
+            <!-- Shimmer Light Foil Reflection -->
+            <div class="card-shimmer-foil" aria-hidden="true"></div>
+
+            <div class="card-content-wrap">
+                <!-- Top Header: Monogram Logo & THE INVITATION -->
+                <header class="card-header">
+                    <div class="card-logo-wrap">
+                        <img src="assets/as-logo.png" alt="Aman & Sujata AS Monogram Logo" class="card-monogram-logo">
+                    </div>
+                    <p class="card-eyebrow">THE INVITATION</p>
+                    <div class="card-ornament" aria-hidden="true">
+                        <span class="card-line"></span>
+                        <span class="card-flower">◇</span>
+                        <span class="card-line"></span>
+                    </div>
+                </header>
+
+                <!-- Couple Names in Runethia Calligraphy Font -->
+                <div class="card-couple-names">
+                    <h1 class="card-name card-groom">Aman</h1>
+                    <span class="card-and">AND</span>
+                    <h1 class="card-name card-bride">Sujata</h1>
+                </div>
+
+                <!-- Bottom Tagline / Subtitle exactly like sample -->
+                <footer class="card-footer">
+                    <p class="card-journey">TWO HEARTS &nbsp;•&nbsp; ONE JOURNEY</p>
+                </footer>
+            </div>
+        </article>
+    </div>
+
+    <!-- Scroll Down Indicator with White & Gold Light Cloud (Placed below card, never overlaps) -->
+    <a href="#countdown" class="scroll-down-cloud-btn" aria-label="Scroll down to countdown">
+        <span class="scroll-cloud-glow" aria-hidden="true"></span>
+        <span class="scroll-down-text">Scroll Down</span>
+        <span class="scroll-down-arrow" aria-hidden="true">↓</span>
+    </a>
+
+</section>
+
+        <!-- COUNTDOWN + RECEPTION DATE SCRATCH CARD -->
+        <section id="countdown" class="section countdown-section">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">SAVE OUR SPECIAL DATE</p>
+                <h2>Counting Down to Forever</h2>
+                <p class="countdown-description">
+                    A little surprise awaits you below
+                </p>
+                <div class="heading-ornament" aria-hidden="true">
+                    <span></span>
+                    <b>✦</b>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="countdown-scratch-card reveal" id="countdownScratchCard">
+
+                <div class="countdown-date-reveal">
+                    <p class="countdown-date-label">TOAST TO LOVE · RECEPTION</p>
+                    <h3 class="revealed-reception-date">17 December 2026</h3>
+                    <span class="countdown-date-heart" aria-hidden="true">♥</span>
+                </div>
+
+                <div
+                    class="countdown"
+                    id="weddingCountdown"
+                    aria-label="Countdown to the reception"
+                >
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <small>Days</small>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <small>Hours</small>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <small>Seconds</small>
+                    </div>
+                </div>
+
+                <canvas
+                    id="countdownScratchCanvas"
+                    aria-label="Scratch or tap to reveal reception date and countdown"
+                ></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- WEDDING EVENTS — ROYAL TIMELINE WITH SIDE PNG ILLUSTRATIONS -->
+        <section id="events" class="events-section">
+
+            <div class="section-heading reveal">
+                <h2>Wedding Celebrations</h2>
+                <p class="events-lead-text">
+                    Sunshine, soulful melodies, sacred vows and an evening
+                    to remember. Join us for these joyous celebrations.
+                </p>
+                <div class="events-heading-ornament">✦ ─── ❦ ─── ✦</div>
+            </div>
+
+            <div class="royal-timeline reveal">
+                <!-- Central vertical golden line -->
+                <div class="timeline-vertical-stem" aria-hidden="true"></div>
+
+                <!-- 1. TURMERIC TRADITION -->
+                <article class="timeline-event-row timeline-row-left-img">
+                    <div class="timeline-event-col timeline-col-visual">
+                        <div class="timeline-png-card">
+                            <img src="assets/event-haldi.png" alt="Turmeric Tradition Haldi Urli Illustration" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="timeline-event-node" aria-hidden="true">
+                        <span class="timeline-gold-gem"></span>
+                    </div>
+
+                    <div class="timeline-event-col timeline-col-info">
+                        <div class="timeline-content-card">
+                            <h3 class="timeline-event-title">TURMERIC TRADITION</h3>
+                            <p class="timeline-event-time">11:00 AM ONWARDS</p>
+                            <p class="timeline-event-date">DECEMBER 16, 2026</p>
+                            <p class="timeline-event-tagline">Sunshine, Laughter &amp; A Little Mischief</p>
+                            <p class="timeline-event-spot">Pool Deck Lawn</p>
+                            <p class="timeline-event-dress">(Adorn in the shades of Yellow Mellow)</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. THE MOONLIGHT MEHFIL -->
+                <article class="timeline-event-row timeline-row-right-img">
+                    <div class="timeline-event-col timeline-col-info">
+                        <div class="timeline-content-card">
+                            <h3 class="timeline-event-title">THE MOONLIGHT MEHFIL</h3>
+                            <p class="timeline-event-time">07:00 PM ONWARDS</p>
+                            <p class="timeline-event-date">DECEMBER 16, 2026</p>
+                            <p class="timeline-event-tagline">Evening Filled with Mysticism &amp; Soulful Melodies</p>
+                            <p class="timeline-event-spot">Amphitheatre</p>
+                            <p class="timeline-event-dress">(Dress to impress in Glitz &amp; Glam)</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-event-node" aria-hidden="true">
+                        <span class="timeline-gold-gem"></span>
+                    </div>
+
+                    <div class="timeline-event-col timeline-col-visual">
+                        <div class="timeline-png-card">
+                            <img src="assets/event-mehfil.png" alt="The Moonlight Mehfil Sangeet Gramophone Illustration" loading="lazy">
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. MANGAL MILAN -->
+                <article class="timeline-event-row timeline-row-left-img">
+                    <div class="timeline-event-col timeline-col-visual">
+                        <div class="timeline-png-card">
+                            <img src="assets/event-wedding.png" alt="Mangal Milan Wedding Procession Illustration" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="timeline-event-node" aria-hidden="true">
+                        <span class="timeline-gold-gem"></span>
+                    </div>
+
+                    <div class="timeline-event-col timeline-col-info">
+                        <div class="timeline-content-card">
+                            <h3 class="timeline-event-title">MANGAL MILAN</h3>
+                            <p class="timeline-event-time">03:00 PM ONWARDS</p>
+                            <p class="timeline-event-date">DECEMBER 17, 2026</p>
+                            <p class="timeline-event-tagline">Sacred Journey of Love Begins!</p>
+                            <p class="timeline-event-spot">Glasshouse Terrace &amp; Amphitheatre</p>
+                            <p class="timeline-event-dress">(Embrace the elegant shades of Pastels, Whites or Ivory with hints of Golden)</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. TOAST TO LOVE -->
+                <article class="timeline-event-row timeline-row-right-img">
+                    <div class="timeline-event-col timeline-col-info">
+                        <div class="timeline-content-card">
+                            <h3 class="timeline-event-title">TOAST TO LOVE</h3>
+                            <p class="timeline-event-time">08:00 PM ONWARDS</p>
+                            <p class="timeline-event-date">DECEMBER 17, 2026</p>
+                            <p class="timeline-event-tagline">Beginning of Happily Ever After!</p>
+                            <p class="timeline-event-spot">Glasshouse Terrace</p>
+                            <p class="timeline-event-dress">(Dress to impress: An Evening to Remember)</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-event-node" aria-hidden="true">
+                        <span class="timeline-gold-gem"></span>
+                    </div>
+
+                    <div class="timeline-event-col timeline-col-visual">
+                        <div class="timeline-png-card">
+                            <img src="assets/event-toast.png" alt="Toast to Love Reception Dinner Banquet Illustration" loading="lazy">
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- FAMILY DETAILS -->
+        <section id="families" class="section story-section">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">WITH THE BLESSINGS OF OUR FAMILIES</p>
+                <h2>Our Families</h2>
+                <p>Two families, one beautiful celebration.</p>
+            </div>
+
+            <div class="story-grid">
+
+                <div class="story-content reveal">
+                    <p class="eyebrow">THE BRIDE</p>
+                    <h2 class="bride-name">Sujata Malik</h2>
+                    <p>
+                        Daughter of Mrs. Santosh Malik and
+                        Mr. Satyabir Malik
+                    </p>
+                </div>
+
+                <div class="story-content reveal">
+                    <p class="eyebrow">THE GROOM</p>
+                    <h2 class="groom-name">Aman Mallick</h2>
+                    <p>
+                        Son of Mrs. Sadhna Mallick and
+                        Mr. Fonish Mallick
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PHOTO GALLERY -->
+        <section id="gallery" class="section gallery-section">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">MOMENTS OF LOVE</p>
+                <h2>Our Gallery</h2>
+                <p>A few beautiful moments to cherish forever.</p>
+            </div>
+
+            <div class="gallery-container reveal">
+
+                <div class="gallery-image-wrapper">
+                    <img
+                        id="galleryImage"
+                        src="assets/marriage1.jpeg"
+                        alt="Wedding gallery photograph 1"
+                        loading="lazy"
+                    >
+                </div>
+
+                <p id="photoCaption" class="photo-caption">
+                    A beautiful beginning
+                </p>
+
+                <div class="gallery-controls">
+
+                    <button
+                        id="prevPhoto"
+                        class="gallery-nav-btn gallery-prev-btn"
+                        type="button"
+                        aria-label="Previous photo"
+                    >←</button>
+
+                    <button
+                        id="nextPhoto"
+                        class="gallery-nav-btn gallery-next-btn"
+                        type="button"
+                        aria-label="Next photo"
+                    >→</button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- WEDDING VENUE — SEAMLESS KRAFT TEXTURE BACKGROUND -->
+        <section id="venue" class="section venue-section">
+
+            <div class="venue-content reveal">
+
+                <p class="eyebrow">JOIN US</p>
+                <h2>The Wedding Venue</h2>
+
+                <div class="gold-divider" aria-hidden="true">
+                    <span>✦</span>
+                </div>
+
+                <p class="venue-name">
+                    Punarnava Resort
+                </p>
+
+                <p class="venue-location">
+                    Dehradun
+                </p>
+
+                <p class="venue-date">
+                    December 16 &amp; 17, 2026
+                </p>
+
+                <a
+                    class="gold-button"
+                    href="https://www.google.com/maps/search/?api=1&query=Punarnava+Resort+Dehradun"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Location
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- RSVP -->
+        <section id="rsvp" class="section rsvp-section">
+
+            <div class="rsvp-card reveal">
+
+                <p class="eyebrow">WARM REGARDS</p>
+                <h2>RSVP</h2>
+
+                <p class="rsvp-quote">
+                    &ldquo;As we turn the page to a new chapter, to have and to hold from this day forward.&rdquo;
+                </p>
+
+                <p class="rsvp-subtitle">
+                    We look forward to celebrating these joyous moments with you.
+                </p>
+
+                <div class="timeline-details rsvp-contacts">
+                    <span>
+                        <strong>Aman Mallick</strong>
+                        <a href="tel:+919711118420">+91 9711118420</a>
+                    </span>
+                    <span>
+                        <strong>Sujata Malik</strong>
+                        <a href="tel:+918476844293">+91 8476844293</a>
+                    </span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <div class="gold-divider" aria-hidden="true">
+                <span>♥</span>
+            </div>
+
+            <h2 class="footer-couple-name">Sujata &amp; Aman</h2>
+
+            <p>
+                As we turn the page to a new chapter,
+                to have and to hold, from this day forward.
+            </p>
+
+            <p class="footer-date">
+                16 · 17 DECEMBER · 2026
+            </p>
+
+            <p>
+                Punarnava Resort, Dehradun
+            </p>
+
+            <p class="copyright">
+                Made with love ♥
+            </p>
+
+        </footer>
+
+    </main>
+
+    <!-- Website JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
