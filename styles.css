@@ -13,9 +13,9 @@
 }
 
 :root {
-    --ivory: #fbf8f1;
-    --cream: #f3eadb;
-    --white: #fffdf8;
+    --ivory: #f8f9fa;
+    --cream: #f2f4f7;
+    --white: #ffffff;
     --gold: #b89555;
     --gold-light: #d9bd82;
     --gold-dark: #8c6a32;
@@ -25,7 +25,8 @@
     --border: rgba(184, 149, 85, 0.32);
     --shadow: 0 15px 45px rgba(87, 64, 33, 0.10);
     --heading-font: "Cormorant Garamond", Georgia, serif;
-    --body-font: "Montserrat", Arial, sans-serif;
+    --body-font: "Cormorant Garamond", Georgia, serif;
+    --digit-font: "Cinzel", "Cormorant Garamond", Georgia, serif;
 }
 
 /* RESET */
@@ -45,8 +46,9 @@ body {
     background: var(--ivory);
     color: var(--text);
     font-family: var(--body-font);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
+    font-variant-numeric: lining-nums;
     overflow-x: hidden;
 }
 
@@ -137,11 +139,24 @@ img {
 
 .eyebrow {
     color: var(--gold-dark);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 4px;
     line-height: 1.8;
     text-transform: uppercase;
+}
+
+.gallery-highlight-eyebrow {
+    display: inline-block;
+    padding: 3px 18px;
+    background: rgba(217, 189, 130, 0.18);
+    border: 1px solid rgba(184, 149, 85, 0.45);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4.5px;
+    color: #8c6020;
+    box-shadow: 0 2px 12px rgba(184, 149, 85, 0.15);
 }
 
 h1,
@@ -188,7 +203,7 @@ h2 {
     border-radius: 2px;
     background: linear-gradient(135deg, #c9a86a, #a98443);
     color: white;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 2px;
     text-align: center;
@@ -244,7 +259,7 @@ select:focus-visible {
     padding: 24px;
     background:
         radial-gradient(ellipse at top, rgba(255,255,255,0.9), transparent 60%),
-        linear-gradient(145deg, #f8f1e5, #eee0c8);
+        linear-gradient(145deg, #ffffff, #f2f4f7);
     text-align: center;
     transition: opacity 0.9s ease, visibility 0.9s ease;
 }
@@ -564,7 +579,157 @@ select:focus-visible {
 ========================================= */
 
 .story-section {
-    background: #f3eadb;
+    background: var(--cream);
+}
+
+/* =========================================
+   OUR FAMILIES - PAPER CARD ON ENVELOPE
+========================================= */
+
+.families-section {
+    position: relative;
+    padding: clamp(70px, 10vh, 110px) 20px;
+    background: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.family-paper-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Soft craft envelope subtle tilt / layered background feel */
+    perspective: 1200px;
+}
+
+.family-paper-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 672 / 898;
+    background-image: url("assets/family-paper-bg.png");
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    /* Safe inner padding so no text touches borders, deckled edges, or corner flowers */
+    padding: clamp(38px, 9.5%, 58px) clamp(30px, 9.5%, 52px) clamp(32px, 8%, 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    box-sizing: border-box;
+    filter: drop-shadow(0 18px 38px rgba(60, 65, 75, 0.12));
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.family-paper-card:hover {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 24px 44px rgba(60, 65, 75, 0.16));
+}
+
+/* Header inside paper */
+.family-card-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.family-card-eyebrow {
+    font-family: var(--heading-font);
+    font-size: clamp(9px, 1.7vw, 11px);
+    font-weight: 600;
+    letter-spacing: clamp(1.8px, 0.4vw, 3px);
+    text-transform: uppercase;
+    color: #4a341e;
+    margin: 0 0 clamp(4px, 0.8vw, 8px);
+    line-height: 1.35;
+}
+
+.family-card-title {
+    font-family: var(--heading-font);
+    font-size: clamp(26px, 5.2vw, 36px);
+    font-weight: 600;
+    color: #2b1708;
+    letter-spacing: 0.8px;
+    margin: 0;
+    line-height: 1.15;
+}
+
+.family-card-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: clamp(4px, 0.9vw, 8px) 0 clamp(4px, 0.9vw, 8px);
+    color: #9d7637;
+}
+
+.family-ornament-line {
+    display: inline-block;
+    width: clamp(28px, 5.5vw, 42px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, #b88f48, transparent);
+}
+
+.family-ornament-heart {
+    font-size: clamp(10px, 1.8vw, 13px);
+    color: #9d7637;
+    line-height: 1;
+}
+
+.family-card-tagline {
+    font-family: var(--heading-font);
+    font-size: clamp(12px, 2.2vw, 15px);
+    font-style: italic;
+    color: #4a341e;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Person block: Bride & Groom */
+.family-person-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.family-person-role {
+    font-family: var(--heading-font);
+    font-size: clamp(8.5px, 1.6vw, 10.5px);
+    font-weight: 600;
+    letter-spacing: clamp(2px, 0.45vw, 3.2px);
+    text-transform: uppercase;
+    color: #4a341e;
+    margin: 0 0 clamp(2px, 0.4vw, 4px);
+    line-height: 1.2;
+}
+
+.family-person-name {
+    font-family: "Runethia", "Cormorant Garamond", cursive, serif !important;
+    font-size: clamp(28px, 5.6vw, 42px) !important;
+    font-weight: normal;
+    color: #2b1708 !important;
+    letter-spacing: 0.5px;
+    margin: 0 0 clamp(2px, 0.4vw, 5px) !important;
+    line-height: 1.15;
+}
+
+.family-person-parents {
+    font-family: var(--heading-font);
+    font-size: clamp(11.5px, 2.1vw, 14.5px);
+    color: #3b2816;
+    line-height: 1.35;
+    margin: 0;
+    max-width: 90%;
 }
 
 .story-grid {
@@ -701,8 +866,8 @@ select:focus-visible {
 .scratch-section {
     overflow: hidden;
     background:
-        radial-gradient(ellipse at top, #fffdf8, transparent 70%),
-        #f3eadb;
+        radial-gradient(ellipse at top, #ffffff, transparent 70%),
+        var(--cream);
 }
 
 .scratch-card {
@@ -781,7 +946,7 @@ select:focus-visible {
 ========================================= */
 
 .gallery-section {
-    background: #fdfaf4;
+    background: #ffffff;
     background-image:
         radial-gradient(circle at 10% 20%, rgba(217, 189, 130, 0.12), transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(217, 189, 130, 0.12), transparent 40%);
@@ -846,8 +1011,8 @@ select:focus-visible {
     border-radius: 12px;
     padding: 11px 11px 16px;
     box-shadow:
-        0 16px 36px rgba(70, 50, 25, 0.12),
-        0 4px 12px rgba(70, 50, 25, 0.06);
+        0 16px 36px rgba(60, 65, 75, 0.08),
+        0 4px 12px rgba(60, 65, 75, 0.04);
     transition:
         border-color 0.35s ease,
         box-shadow 0.35s ease;
@@ -866,7 +1031,7 @@ select:focus-visible {
     aspect-ratio: 4 / 5;
     overflow: hidden;
     border-radius: 8px;
-    background: #f5eedf;
+    background: #f1f3f5;
 }
 
 .photo-card-img-wrap img {
@@ -941,125 +1106,183 @@ select:focus-visible {
 .venue-section {
     position: relative;
     display: flex;
-    flex-direction: column;
-    min-height: clamp(680px, 86vh, 920px);
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: clamp(60px, 8vh, 100px) 20px;
+    background: var(--white);
     overflow: hidden;
-    padding: clamp(100px, 14vh, 140px) 24px clamp(145px, 20vh, 200px);
-    background-color: #cfbaa9;
+}
+
+.venue-card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venue-card-frame {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 769 / 1024;
     background-image: url("assets/venue-bg.jpg");
+    background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    filter: drop-shadow(0 18px 40px rgba(60, 65, 75, 0.12));
+    transition: transform 0.4s ease, filter 0.4s ease;
+    overflow: hidden;
 }
 
-@media (min-width: 992px) {
-    .venue-section {
-        background-size: contain;
-        background-color: #cfbaa9;
-    }
+.venue-card-frame:hover {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 24px 48px rgba(60, 65, 75, 0.16));
 }
 
+/* Content placed with generous breathing room in upper arch zone (y: 7.5% to 45.5%) */
 .venue-content {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    max-width: 580px;
-    margin: 0 auto;
+    position: absolute;
+    top: 7.5%;
+    left: 8%;
+    right: 8%;
+    height: 38%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    text-align: center;
     box-sizing: border-box;
+    padding: clamp(4px, 1vh, 10px) 12px;
+    z-index: 3;
 }
 
 .venue-content .eyebrow {
-    color: #6d4b22;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 4px;
+    color: #5c3c1a;
+    font-size: clamp(9px, 1.8vw, 11px);
+    font-weight: 700;
+    letter-spacing: clamp(2.5px, 0.5vw, 4px);
     text-transform: uppercase;
-    margin-bottom: 6px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1;
 }
 
 .venue-content h2 {
     color: #2b1708;
     font-family: var(--heading-font);
-    font-size: clamp(34px, 5.5vw, 48px);
+    font-size: clamp(28px, 5.5vw, 40px);
     font-weight: 600;
-    line-height: 1.15;
-    margin: 4px 0 10px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
 .venue-content .gold-divider {
     color: #8f6a2b;
-    margin: 10px auto 14px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
+    font-size: 11px;
+    line-height: 1;
 }
 
 .venue-content .gold-divider::before,
 .venue-content .gold-divider::after {
     background: linear-gradient(to right, transparent, #b88f48, transparent);
-    width: 44px;
+    width: clamp(28px, 5.5vw, 44px);
     height: 1px;
     content: "";
 }
 
 .venue-name {
-    margin: 6px 0 2px;
-    color: #221206;
+    margin: 0;
+    color: #1f1105;
     font-family: var(--heading-font);
-    font-size: clamp(28px, 4.6vw, 38px);
+    font-size: clamp(20px, 4vw, 28px);
     font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.75);
+    letter-spacing: 0.6px;
+    line-height: 1.15;
 }
 
 .venue-location {
     color: #4a341e;
     font-family: var(--body-font);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+    font-size: clamp(10.5px, 2vw, 12.5px);
+    font-weight: 700;
+    letter-spacing: 2.8px;
     text-transform: uppercase;
-    margin: 0 0 10px;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1;
 }
 
 .venue-date {
-    margin: 4px 0 22px;
-    color: #724f21;
-    font-size: 12px;
+    margin: 0;
+    color: #5c3c1a;
+    font-family: var(--heading-font);
+    font-size: clamp(12px, 2.3vw, 15px);
     font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Premium Luxury View Location Button */
+.venue-location-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #a77f3a 0%, #7e591e 100%);
+    color: #ffffff !important;
+    font-family: var(--heading-font);
+    font-size: clamp(9.5px, 1.8vw, 11.5px);
+    font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    padding: clamp(7px, 1.4vw, 10px) clamp(18px, 3.6vw, 28px);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 235, 185, 0.45);
+    box-shadow:
+        0 4px 14px rgba(70, 45, 15, 0.28),
+        inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
 }
 
-.venue-content .gold-button {
-    border: 1px solid #78521e;
-    background: linear-gradient(135deg, #a77f3a 0%, #7e591e 100%);
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.2px;
-    padding: 12px 28px;
-    border-radius: 3px;
-    box-shadow: 0 6px 18px rgba(50, 32, 12, 0.28);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.venue-content .gold-button:hover {
+.venue-location-btn:hover {
+    background: linear-gradient(135deg, #b88d44 0%, #8c6422 100%);
     transform: translateY(-2px);
-    box-shadow: 0 9px 24px rgba(50, 32, 12, 0.38);
+    box-shadow:
+        0 8px 22px rgba(70, 45, 15, 0.38),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    border-color: rgba(255, 235, 185, 0.7);
 }
+
+.venue-location-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(70, 45, 15, 0.3);
+}
+
+.venue-btn-icon {
+    width: clamp(12px, 2.2vw, 14px);
+    height: clamp(12px, 2.2vw, 14px);
+    stroke: currentColor;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.venue-location-btn:hover .venue-btn-icon {
+    transform: scale(1.15);
+}
+
 
 /* =========================================
    RSVP
@@ -1455,22 +1678,7 @@ select:focus-visible {
     }
 
     .venue-section {
-        min-height: auto;
         padding: 50px 14px;
-    }
-
-    .venue-card {
-        width: 100%;
-        max-width: 440px;
-        min-height: 590px;
-    }
-
-    .venue-content {
-        padding: clamp(90px, 20vw, 115px) 16px clamp(120px, 26vw, 155px);
-    }
-
-    .venue-name {
-        font-size: 26px;
     }
 
     .rsvp-card {
@@ -1572,9 +1780,9 @@ select:focus-visible {
     overflow: hidden;
     padding: 100px 20px 110px;
     background:
-        radial-gradient(ellipse at 50% 20%, rgba(246, 230, 224, 0.65) 0%, transparent 60%),
-        radial-gradient(ellipse at 85% 75%, rgba(242, 222, 215, 0.45) 0%, transparent 50%),
-        linear-gradient(160deg, #fdf8f5 0%, #faeee7 50%, #fdf9f6 100%);
+        radial-gradient(ellipse at 50% 20%, rgba(240, 243, 246, 0.5) 0%, transparent 60%),
+        radial-gradient(ellipse at 85% 75%, rgba(235, 240, 245, 0.4) 0%, transparent 50%),
+        linear-gradient(160deg, #ffffff 0%, #f7f9fa 50%, #f0f3f6 100%);
 }
 
 .events-section .section-heading {
@@ -1912,62 +2120,150 @@ select:focus-visible {
     line-height: 1.4;
 }
 
-/* Mobile responsive timeline (Stacked under 768px) */
+/* Mobile responsive timeline — Centered 3-column layout matching desktop */
 @media (max-width: 768px) {
     .events-section {
-        padding: 70px 16px 80px;
+        padding: 55px 10px 65px;
     }
 
+    .royal-timeline {
+        padding: 15px 0;
+    }
+
+    /* Keep vertical line strictly in center */
     .timeline-vertical-stem {
-        left: 24px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 
+    /* 3-column grid on mobile: Left side, Center node (26px), Right side */
     .timeline-event-row {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 55px;
-        margin-bottom: 45px;
+        display: grid !important;
+        grid-template-columns: 1fr 26px 1fr !important;
+        align-items: center !important;
+        margin-bottom: 32px !important;
+        padding-left: 0 !important;
     }
 
     .timeline-event-node {
-        position: absolute;
-        left: 17px;
-        top: 8px;
-        width: auto;
-        height: auto;
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 3 !important;
     }
 
-    .timeline-row-left-img .timeline-col-visual,
-    .timeline-row-right-img .timeline-col-visual {
-        display: flex;
-        justify-content: flex-start;
-        padding: 0;
-        margin-bottom: 12px;
-        order: 1;
+    .timeline-gold-gem {
+        width: 12px;
+        height: 12px;
     }
 
-    .timeline-row-left-img .timeline-col-info,
+    /* Alternating alignments */
+    .timeline-row-left-img .timeline-col-visual {
+        display: flex !important;
+        justify-content: flex-end !important;
+        align-items: center;
+        padding-right: 8px !important;
+        padding-left: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .timeline-row-left-img .timeline-col-info {
+        display: block !important;
+        padding-left: 8px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+
     .timeline-row-right-img .timeline-col-info {
-        display: block;
-        padding: 0;
-        text-align: left;
-        order: 2;
+        display: block !important;
+        padding-right: 8px !important;
+        padding-left: 0 !important;
+        text-align: right !important;
+    }
+
+    .timeline-row-right-img .timeline-col-visual {
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: center;
+        padding-left: 8px !important;
+        padding-right: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .timeline-row-right-img .timeline-content-card {
-        text-align: left;
+        text-align: right !important;
+        margin-left: auto;
     }
 
-    .timeline-row-left-img .timeline-col-visual::after,
-    .timeline-row-left-img .timeline-col-info::before,
-    .timeline-row-right-img .timeline-col-info::after,
-    .timeline-row-right-img .timeline-col-visual::before {
-        display: none;
+    .timeline-row-left-img .timeline-content-card {
+        text-align: left !important;
+        margin-right: auto;
+    }
+
+    /* Illustrations scale smoothly */
+    .timeline-png-card {
+        max-width: 100%;
     }
 
     .timeline-png-card img {
-        width: 140px;
+        width: clamp(75px, 22vw, 115px) !important;
+        max-width: 100% !important;
+        height: auto;
+    }
+
+    /* Scaled typography for mobile 2-column fit */
+    .timeline-content-card {
+        max-width: 100% !important;
+    }
+
+    .timeline-event-title {
+        font-size: clamp(14px, 3.4vw, 18px);
+        letter-spacing: 0.8px;
+        margin-bottom: 3px;
+        line-height: 1.2;
+    }
+
+    .timeline-event-time {
+        font-size: clamp(10px, 2.3vw, 11.5px);
+        letter-spacing: 0.8px;
+        margin-bottom: 2px;
+    }
+
+    .timeline-event-date {
+        font-size: clamp(9px, 2vw, 10.5px);
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .timeline-event-tagline {
+        font-size: clamp(11px, 2.4vw, 12.5px);
+        margin-bottom: 4px;
+        line-height: 1.25;
+    }
+
+    .timeline-event-spot {
+        font-size: clamp(9px, 2vw, 10.5px);
+        letter-spacing: 0.6px;
+        margin-bottom: 3px;
+    }
+
+    .timeline-event-dress {
+        font-size: clamp(8.5px, 1.8vw, 10px);
+        line-height: 1.2;
+    }
+
+    /* Subtle connector branch lines on scroll */
+    .timeline-event-row.is-active .timeline-col-visual::after,
+    .timeline-event-row.is-active .timeline-col-info::before,
+    .timeline-event-row.is-active .timeline-col-info::after,
+    .timeline-event-row.is-active .timeline-col-visual::before {
+        width: 8px !important;
+        opacity: 0.85 !important;
     }
 }
 /* =========================================
@@ -1982,44 +2278,44 @@ select:focus-visible {
     background-image:
         radial-gradient(circle at 10% 15%, rgba(217, 189, 130, 0.12), transparent 35%),
         radial-gradient(circle at 90% 85%, rgba(217, 189, 130, 0.12), transparent 35%);
-    padding: 75px 5%;
+    padding: 28px 5% 34px !important;
+    min-height: auto !important;
     text-align: center;
 }
 
-/* Text above scratch card - High Contrast & Crisp Readability */
-.countdown-section .section-heading {
-    max-width: 650px;
-    margin: 0 auto 30px;
+/* Heading revealed ONLY AFTER scratch is completed */
+.countdown-revealed-heading {
+    display: none;
     text-align: center;
+    margin: 0 auto 16px;
+    max-width: 620px;
+    width: 100%;
 }
 
-.countdown-section .section-heading .eyebrow {
-    color: #8c6020;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+.countdown-scratch-wrapper.is-revealed .countdown-revealed-heading {
+    display: block;
+    animation: revealedHeadingFadeIn 0.65s cubic-bezier(0.2, 0.8, 0.25, 1) both;
 }
 
-.countdown-section .section-heading h2 {
+.countdown-revealed-heading .countdown-revealed-title {
     color: #382510;
     font-family: var(--heading-font);
-    font-size: clamp(34px, 5.5vw, 48px);
+    font-size: clamp(26px, 4.2vw, 36px);
     font-weight: 600;
-    letter-spacing: 1px;
-    margin: 8px 0 14px;
+    letter-spacing: 0.8px;
+    margin: 0 0 6px;
     line-height: 1.2;
 }
 
-.countdown-section .countdown-description {
-    color: #4e3822;
-    font-size: clamp(15px, 2.3vw, 17px);
-    font-weight: 500;
-    line-height: 1.65;
-    max-width: 580px;
-    margin: 0 auto 16px;
+@keyframes revealedHeadingFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .heading-ornament {
@@ -2027,7 +2323,7 @@ select:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin: 12px auto 0;
+    margin: 8px auto 0;
     color: #a77c32;
 }
 
@@ -2055,7 +2351,7 @@ select:focus-visible {
     position: relative;
     width: 100%;
     max-width: 620px;
-    margin: 26px auto 0;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2071,11 +2367,11 @@ select:focus-visible {
     box-sizing: border-box;
     overflow: hidden;
     border-radius: 18px;
-    background: linear-gradient(135deg, #ffffff 0%, #fdf8f0 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
     border: 1.5px solid rgba(195, 160, 95, 0.55);
     box-shadow:
-        0 18px 45px rgba(85, 60, 25, 0.12),
-        0 4px 14px rgba(85, 60, 25, 0.06),
+        0 18px 45px rgba(60, 65, 75, 0.08),
+        0 4px 14px rgba(60, 65, 75, 0.04),
         inset 0 0 25px rgba(255, 255, 255, 0.95);
     padding: clamp(22px, 4.2vw, 34px) clamp(12px, 3vw, 24px) clamp(20px, 3.8vw, 28px);
     transition: box-shadow 0.4s ease, border-color 0.4s ease;
@@ -2085,7 +2381,7 @@ select:focus-visible {
     border-color: rgba(195, 160, 95, 0.85);
     box-shadow:
         0 22px 55px rgba(184, 149, 85, 0.2),
-        0 6px 18px rgba(85, 60, 25, 0.08);
+        0 6px 18px rgba(60, 65, 75, 0.05);
 }
 
 /* Golden Scratch Foil Canvas Layer */
@@ -2146,9 +2442,9 @@ select:focus-visible {
 .countdown-date-label {
     margin: 0 0 8px;
     color: #8c6020;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(9.5px, 2.2vw, 11px);
-    font-weight: 700;
+    font-family: var(--body-font);
+    font-size: clamp(11px, 2.2vw, 13px);
+    font-weight: 600;
     letter-spacing: 3.5px;
     text-transform: uppercase;
 }
@@ -2156,9 +2452,10 @@ select:focus-visible {
 .revealed-reception-date {
     margin: 0;
     color: #3b2812;
-    font-family: var(--heading-font);
+    font-family: var(--digit-font);
     font-weight: 600;
-    font-size: clamp(28px, 6.5vw, 44px);
+    font-size: clamp(26px, 6vw, 40px);
+    letter-spacing: 1px;
     line-height: 1.2;
 }
 
@@ -2218,12 +2515,12 @@ select:focus-visible {
     min-width: 0;
     min-height: clamp(80px, 16vw, 108px);
     padding: clamp(12px, 2.8vw, 20px) clamp(4px, 1.6vw, 12px);
-    background: linear-gradient(145deg, #ffffff 0%, #faf3e8 100%);
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
     border: 1px solid rgba(195, 160, 95, 0.45);
     border-radius: clamp(10px, 2.4vw, 16px);
     box-shadow:
-        0 10px 24px rgba(85, 60, 25, 0.08),
-        0 2px 6px rgba(85, 60, 25, 0.04),
+        0 10px 24px rgba(60, 65, 75, 0.05),
+        0 2px 6px rgba(60, 65, 75, 0.03),
         inset 0 0 15px rgba(255, 255, 255, 0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -2237,19 +2534,20 @@ select:focus-visible {
 .countdown-number {
     display: block;
     color: #845d22;
-    font-family: var(--heading-font);
-    font-size: clamp(26px, 6vw, 44px);
+    font-family: var(--digit-font);
+    font-size: clamp(28px, 6.5vw, 44px);
     font-weight: 700;
+    letter-spacing: 1px;
     line-height: 1.05;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: tabular-nums lining-nums;
 }
 
 .countdown-label {
     display: block;
     margin-top: 6px;
     color: #6a4f28;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(8px, 1.8vw, 11px);
+    font-family: var(--body-font);
+    font-size: clamp(10px, 2vw, 13px);
     font-weight: 600;
     letter-spacing: clamp(1px, 0.4vw, 2px);
     text-transform: uppercase;
@@ -2260,15 +2558,7 @@ select:focus-visible {
 
 #intro.intro {
     overflow: hidden;
-    background:
-        radial-gradient(ellipse at 20% 20%, rgba(195, 151, 72, 0.16), transparent 30%),
-        radial-gradient(ellipse at 80% 75%, rgba(190, 151, 76, 0.12), transparent 30%),
-        linear-gradient(135deg, #173b30, #071d18 60%, #12372b);
-}
-
-#intro.intro::before,
-#intro.intro::after {
-    border-color: rgba(220, 183, 111, 0.55);
+    background: #F1EDE9;
 }
 
 #intro .intro-content {
@@ -2332,7 +2622,7 @@ select:focus-visible {
     margin: 5px 0;
     font-size: clamp(22px, 5vw, 28px);
     line-height: 1.2;
-    font-family: Georgia, serif;
+    font-family: var(--heading-font);
     font-weight: 400;
     font-style: italic;
 }
@@ -2470,8 +2760,6 @@ select:focus-visible {
    Cream paper + gold floral theme
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
-
 /* ==========================================
    WEDDING INVITATION HERO — LUXURY SAMPLE CARD
    Matching added sample & card-template.png
@@ -2492,10 +2780,12 @@ select:focus-visible {
     padding: 38px 18px 24px;
     text-align: center;
     background:
-        radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 252, 245, 0.6) 45%, transparent 75%),
-        radial-gradient(ellipse at 85% 15%, rgba(242, 230, 205, 0.35) 0%, transparent 50%),
-        radial-gradient(ellipse at 15% 85%, rgba(238, 224, 196, 0.35) 0%, transparent 50%),
-        linear-gradient(180deg, #faf6ee 0%, #f6f0e4 50%, #eee4d2 100%);
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.96) 0%, rgba(248, 249, 250, 0.6) 38%, transparent 70%),
+        radial-gradient(ellipse at 10% 8%, rgba(236, 196, 190, 0.38) 0%, transparent 45%),
+        radial-gradient(ellipse at 92% 92%, rgba(236, 196, 190, 0.36) 0%, transparent 45%),
+        radial-gradient(ellipse at 92% 10%, rgba(176, 186, 150, 0.22) 0%, transparent 42%),
+        radial-gradient(ellipse at 8% 90%, rgba(176, 186, 150, 0.22) 0%, transparent 42%),
+        linear-gradient(180deg, #ffffff 0%, #f6f8fa 55%, #edf1f5 100%);
 }
 
 .invitation-ambient {
@@ -2504,8 +2794,8 @@ select:focus-visible {
     z-index: 0;
     pointer-events: none;
     background:
-        radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.5) 0%, transparent 60%),
-        radial-gradient(ellipse at 50% 100%, rgba(215, 190, 145, 0.12) 0%, transparent 60%);
+        radial-gradient(ellipse at 50% 45%, rgba(255, 255, 255, 0.6) 0%, transparent 58%),
+        radial-gradient(ellipse at 50% 100%, rgba(170, 175, 185, 0.08) 0%, transparent 60%);
 }
 
 .invitation-card-container {
@@ -2524,26 +2814,26 @@ select:focus-visible {
 /* The physical luxury invitation card matching the sample */
 .sample-invitation-card {
     position: relative;
-    width: min(410px, 92vw);
-    height: clamp(520px, 74vh, 640px);
-    aspect-ratio: 682 / 1024;
-    border-radius: 8px;
+    width: min(430px, 92vw);
+    height: clamp(560px, 78vh, 660px);
+    aspect-ratio: 672 / 898;
+    border-radius: 0;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
 
-    /* Card template background with floral corners */
-    background-color: #fffdf9;
-    background-image: url("assets/card-template.png");
-    background-size: cover;
+    /* Family Paper Card PNG */
+    background-color: transparent;
+    background-image: url("assets/family-paper-bg.png");
+    background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
 
-    /* Realistic luxury paper shadow & border */
-    border: 1px solid rgba(206, 175, 120, 0.45);
-    box-shadow:
-        0 25px 60px -12px rgba(85, 60, 25, 0.22),
-        0 12px 28px -6px rgba(85, 60, 25, 0.15),
-        inset 0 0 35px rgba(245, 235, 215, 0.4);
+    /* Shadow follows card silhouette */
+    border: none;
+    box-shadow: none;
+    filter:
+        drop-shadow(0 22px 26px rgba(60, 65, 75, 0.12))
+        drop-shadow(0 6px 10px rgba(60, 65, 75, 0.06));
 
     /* Animation: floating breathe and entrance */
     animation: cardBreathe 6s ease-in-out infinite, invitationCardIn 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -2587,6 +2877,8 @@ select:focus-visible {
         transparent 66%
     );
     background-size: 260% 260%;
+    -webkit-mask: url("assets/family-paper-bg.png") center / 100% 100% no-repeat;
+    mask: url("assets/family-paper-bg.png") center / 100% 100% no-repeat;
     animation: cardFoilGleam 7s ease-in-out infinite;
 }
 
@@ -2613,7 +2905,7 @@ select:focus-visible {
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: clamp(24px, 3.8vh, 38px) clamp(20px, 4vw, 36px) clamp(24px, 3.8vh, 38px);
+    padding: 19% 15% 18%;
     box-sizing: border-box;
     text-align: center;
 }
@@ -2683,6 +2975,7 @@ select:focus-visible {
 
 /* Couple Names in Runethia Font */
 .card-couple-names {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2703,8 +2996,8 @@ select:focus-visible {
 }
 
 .card-couple-names .card-and {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
+    font-family: var(--body-font);
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.36em;
     color: #9c7538;
@@ -2728,7 +3021,7 @@ select:focus-visible {
 }
 
 .card-journey {
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: var(--body-font);
     font-size: clamp(9px, 1.8vw, 10.5px);
     font-weight: 600;
     letter-spacing: 3.8px;
@@ -2777,8 +3070,8 @@ select:focus-visible {
 }
 
 .scroll-down-text {
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 11px;
+    font-family: var(--body-font);
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 3px;
     color: #724f1c;
@@ -2848,17 +3141,17 @@ select:focus-visible {
     }
 
     .sample-invitation-card {
-        width: min(350px, 92vw);
+        width: min(360px, 90vw);
         height: auto;
-        min-height: 480px;
-        max-height: 72vh;
-        aspect-ratio: 682 / 1024;
+        min-height: 490px;
+        max-height: 76vh;
+        aspect-ratio: 672 / 898;
     }
 
     .card-content-wrap {
         height: 100%;
-        min-height: 480px;
-        padding: 34px 18px 26px;
+        min-height: 490px;
+        padding: 20% 14% 19%;
     }
 
     .card-couple-names .card-name {
@@ -2885,7 +3178,7 @@ select:focus-visible {
     align-items: center;
     justify-content: center;
     padding: 0;
-    background: #102b20;
+    background: #F1EDE9;
     opacity: 1;
     visibility: visible;
     transition: opacity .8s ease, visibility .8s ease;
@@ -2904,6 +3197,7 @@ select:focus-visible {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    background: #F1EDE9;
 }
 
 .video-overlay {
@@ -2912,9 +3206,9 @@ select:focus-visible {
     pointer-events: none;
     background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, .12),
+        rgba(0, 0, 0, .04),
         transparent 45%,
-        rgba(0, 0, 0, .2)
+        rgba(0, 0, 0, .1)
     );
 }
 
@@ -2922,19 +3216,28 @@ select:focus-visible {
     position: absolute;
     right: 24px;
     bottom: 24px;
-    z-index: 2;
-    padding: 11px 18px;
-    border: 1px solid rgba(226, 195, 135, .8);
-    background: rgba(13, 39, 29, .72);
-    color: #fff1d2;
+    z-index: 20;
+    padding: 10px 20px;
+    border: 1px solid rgba(197, 160, 89, 0.75);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #4a3728;
+    font-family: 'Cinzel', serif;
     font-size: 12px;
-    letter-spacing: 1.5px;
+    font-weight: 600;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: background .25s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all .25s ease;
 }
 
 .skip-intro-button:hover {
-    background: rgba(166, 124, 54, .9);
+    background: #ffffff;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(197, 160, 89, 0.3);
 }
 
 @media (max-width: 600px) {
@@ -2944,7 +3247,206 @@ select:focus-visible {
 
     .skip-intro-button {
         right: 16px;
-        bottom: 18px;
+        bottom: 20px;
+        padding: 9px 16px;
+        font-size: 11px;
     }
 }
 
+/* ===== VIDEO WAX SEAL TAP OVERLAY ===== */
+
+.video-tap-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    /* Purely transparent - let the video show through */
+    background: rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    transition: opacity .5s ease, visibility .5s ease;
+}
+
+.video-tap-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Ripple rings that pulse outward from the seal */
+.seal-ripple {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 1.5px solid rgba(226, 195, 135, 0.55);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sealRipple 2.4s ease-out infinite;
+}
+
+.seal-ripple-2 {
+    animation-delay: 1.2s;
+}
+
+@keyframes sealRipple {
+    0% { transform: scale(0.7); opacity: 0.8; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Wax seal disc + SVG icon */
+.video-seal {
+    position: relative;
+    z-index: 1;
+    animation: sealFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(197, 160, 89, 0.5)) drop-shadow(0 0 40px rgba(197,160,89,0.2));
+}
+
+.seal-svg {
+    width: clamp(90px, 18vw, 120px);
+    height: clamp(90px, 18vw, 120px);
+    display: block;
+}
+
+@keyframes sealFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.03); }
+}
+
+/* Text label directly on video */
+.seal-tap-text {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 2.2vw, 14px);
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: #e2c387;
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6), 0 0 20px rgba(197,160,89,0.4);
+    margin: 0;
+}
+
+
+/* ===== PAPER-BG HERO CARD ===== */
+
+.paper-bg-card {
+    background: none !important;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.paper-bg-layer {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/family-paper-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.paper-card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 52px);
+    gap: 8px;
+    text-align: center;
+    background: transparent;
+}
+
+.paper-logo {
+    width: clamp(56px, 10vw, 84px);
+    margin-bottom: 4px;
+}
+
+.paper-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(9px, 1.4vw, 12px);
+    letter-spacing: 4px;
+    color: #6b4c2a;
+    margin: 4px 0;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+}
+
+.paper-ornament {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #a07840;
+    font-size: 14px;
+    margin: 2px 0 6px;
+}
+
+.paper-names {
+    gap: 2px;
+}
+
+/* ===== COUPLE VIDEO (hero bottom, no section wrapper) ===== */
+
+.couple-video-wrapper {
+    max-width: 420px;
+    width: 100%;
+}
+
+.couple-video-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    /* No black background - transparent so it feels like a card */
+    background: transparent;
+    aspect-ratio: 9 / 16;
+    max-height: 72vh;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1), 0 2px 10px rgba(0,0,0,0.06);
+}
+
+@media (min-width: 600px) {
+    .couple-video-card {
+        max-height: 68vh;
+    }
+}
+
+.couple-video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.couple-video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(0,0,0,0.22);
+    transition: background .25s ease;
+}
+
+.couple-video-play-overlay:hover {
+    background: rgba(0,0,0,0.08);
+}
+
+.couple-video-play-overlay.hidden {
+    display: none;
+}
+
+.couple-video-play-overlay svg {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 0 14px rgba(226,195,135,0.5));
+    transition: transform .2s ease;
+}
+
+.couple-video-play-overlay:hover svg {
+    transform: scale(1.1);
+}

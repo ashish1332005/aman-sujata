@@ -9,19 +9,18 @@
         name="description"
         content="Join Sujata Malik and Aman Mallick at Punarnava Resort, Dehradun, on December 16 and 17, 2026, to celebrate their joyous commitment."
     >
-    <meta name="theme-color" content="#fbf8f1">
+    <meta name="theme-color" content="#f8f9fa">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Cormorant Garamond & Cinzel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
         rel="stylesheet"
     >
 
     <!-- Website Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=9">
 </head>
 
 <body class="locked">
@@ -37,10 +36,9 @@
     <video
         id="introVideo"
         class="intro-video"
-        autoplay
         muted
         playsinline
-        preload="auto"
+        preload="metadata"
         aria-label="Wedding invitation video"
     >
         <source src="assets/video1.mp4" type="video/mp4">
@@ -49,10 +47,31 @@
 
     <div class="video-overlay" aria-hidden="true"></div>
 
+    <!-- Wax Seal Tap Overlay — directly on the video, no box -->
+    <div id="videoTapOverlay" class="video-tap-overlay" role="button" tabindex="0" aria-label="Tap to open invitation video">
+        <!-- Ripple rings pulse outward from the seal -->
+        <span class="seal-ripple seal-ripple-1" aria-hidden="true"></span>
+        <span class="seal-ripple seal-ripple-2" aria-hidden="true"></span>
+
+        <!-- The seal itself -->
+        <div class="video-seal" aria-hidden="true">
+            <svg class="seal-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer decorative ring -->
+                <circle cx="60" cy="60" r="57" stroke="#e2c387" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.85"/>
+                <!-- Solid wax disc -->
+                <circle cx="60" cy="60" r="46" fill="rgba(197,160,89,0.22)" stroke="#e2c387" stroke-width="1.5"/>
+            </svg>
+        </div>
+
+        <!-- Text directly under the seal -->
+        <p class="seal-tap-text">TAP TO OPEN</p>
+    </div>
+
     <button
         id="skipIntro"
         class="skip-intro-button"
         type="button"
+        style="display:none"
     >
         Skip Intro →
     </button>
@@ -69,7 +88,7 @@
     <!-- Ambient glowing backdrop -->
     <div class="invitation-ambient" aria-hidden="true"></div>
 
-    <!-- 3D Interactive Card Container -->
+    <!-- 3D Interactive Card Container (family-paper-bg) -->
     <div class="invitation-card-container reveal">
         <article class="sample-invitation-card" id="invitationCard" aria-label="Wedding Invitation Card">
             <!-- Shimmer Light Foil Reflection -->
@@ -95,16 +114,12 @@
                     <span class="card-and">AND</span>
                     <h1 class="card-name card-bride">Sujata</h1>
                 </div>
-
-                <!-- Bottom Tagline / Subtitle exactly like sample -->
-                <footer class="card-footer">
-                    <p class="card-journey">TWO HEARTS &nbsp;•&nbsp; ONE JOURNEY</p>
-                </footer>
             </div>
         </article>
     </div>
 
-    <!-- Scroll Down Indicator with White & Gold Light Cloud (Placed below card, never overlaps) -->
+
+    <!-- Scroll Down Indicator -->
     <a href="#countdown" class="scroll-down-cloud-btn" aria-label="Scroll down to countdown">
         <span class="scroll-cloud-glow" aria-hidden="true"></span>
         <span class="scroll-down-text">Scroll Down</span>
@@ -116,18 +131,18 @@
         <!-- COUNTDOWN SECTION — RESPONSIVE SCRATCH TO REVEAL -->
         <section id="countdown" class="section countdown-section">
 
-            <div class="section-heading reveal">
-                <p class="eyebrow">SAVE OUR SPECIAL DATE</p>
-                <h2>Counting Down to Forever</h2>
-                <div class="heading-ornament" aria-hidden="true">
-                    <span></span>
-                    <b>✦</b>
-                    <span></span>
+            <!-- Responsive Interactive Scratch Box (Only scratch box shown initially) -->
+            <div class="countdown-scratch-wrapper reveal" id="countdownScratchWrapper">
+                
+                <!-- Heading appears AFTER scratch is revealed -->
+                <div class="countdown-revealed-heading" id="countdownRevealedHeading" aria-hidden="true">
+                    <h2 class="countdown-revealed-title">Counting Down to Forever</h2>
+                    <div class="heading-ornament" aria-hidden="true">
+                        <span></span>
+                        <b>✦</b>
+                        <span></span>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Responsive Interactive Scratch Box -->
-            <div class="countdown-scratch-wrapper reveal">
                 
                 <div class="countdown-scratch-box" id="countdownScratchBox" aria-label="Interactive wedding scratch card">
                     
@@ -182,6 +197,7 @@
             </div>
 
         </section>
+
 
 
         <!-- WEDDING EVENTS — ROYAL TIMELINE WITH SIDE PNG ILLUSTRATIONS -->
@@ -300,43 +316,49 @@
         </section>
 
         <!-- FAMILY DETAILS -->
-        <section id="families" class="section story-section">
+        <section id="families" class="section story-section families-section">
 
-            <div class="section-heading reveal">
-                <p class="eyebrow">WITH THE BLESSINGS OF OUR FAMILIES</p>
-                <h2>Our Families</h2>
-                <p>Two families, one beautiful celebration.</p>
+            <div class="family-paper-wrapper reveal">
+                <div class="family-paper-card" aria-label="Our Families Blessing Card">
+                    <header class="family-card-header">
+                        <p class="family-card-eyebrow">WITH THE BLESSINGS OF OUR FAMILIES</p>
+                        <h2 class="family-card-title">Our Families</h2>
+                        <div class="family-card-ornament" aria-hidden="true">
+                            <span class="family-ornament-line"></span>
+                            <span class="family-ornament-heart">♥</span>
+                            <span class="family-ornament-line"></span>
+                        </div>
+                        <p class="family-card-tagline">Two families, one beautiful celebration</p>
+                    </header>
+
+                    <!-- Bride Info -->
+                    <div class="family-person-block family-bride-block">
+                        <p class="family-person-role">THE BRIDE</p>
+                        <h3 class="bride-name family-person-name">Sujata Malik</h3>
+                        <p class="family-person-parents">
+                            Daughter of Mrs. Santosh Malik and Mr. Satyabir Malik
+                        </p>
+                    </div>
+
+                    <!-- Groom Info -->
+                    <div class="family-person-block family-groom-block">
+                        <p class="family-person-role">THE GROOM</p>
+                        <h3 class="groom-name family-person-name">Aman Mallick</h3>
+                        <p class="family-person-parents">
+                            Son of Mrs. Sadhna Mallick and Mr. Fonish Mallick
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="story-grid">
-
-                <div class="story-content reveal">
-                    <p class="eyebrow">THE BRIDE</p>
-                    <h2 class="bride-name">Sujata Malik</h2>
-                    <p>
-                        Daughter of Mrs. Santosh Malik and
-                        Mr. Satyabir Malik
-                    </p>
-                </div>
-
-                <div class="story-content reveal">
-                    <p class="eyebrow">THE GROOM</p>
-                    <h2 class="groom-name">Aman Mallick</h2>
-                    <p>
-                        Son of Mrs. Sadhna Mallick and
-                        Mr. Fonish Mallick
-                    </p>
-                </div>
-
-            </div>
         </section>
 
         <!-- PHOTO GALLERY — RESPONSIVE CARDS CAROUSEL -->
         <section id="gallery" class="section gallery-section">
 
             <div class="section-heading reveal">
-                <p class="eyebrow">MOMENTS OF LOVE</p>
-                <h2>Our Gallery</h2>
+                <p class="eyebrow gallery-highlight-eyebrow">MOMENTS OF LOVE</p>
+                <h2>Memory Lane</h2>
                 <p>A few beautiful moments to cherish forever.</p>
                 <div class="heading-ornament" aria-hidden="true">
                     <span></span>
@@ -432,39 +454,46 @@
             </div>
         </section>
 
-        <!-- WEDDING VENUE — SEAMLESS KRAFT TEXTURE BACKGROUND -->
+        <!-- WEDDING VENUE — ROYAL ARCH CARD -->
         <section id="venue" class="section venue-section">
 
-            <div class="venue-content reveal">
+            <div class="venue-card-wrapper reveal">
+                <div class="venue-card-frame" aria-label="Wedding Venue Card">
+                    <div class="venue-content">
+                        <p class="eyebrow">JOIN US</p>
+                        <h2>Venue</h2>
 
-                <p class="eyebrow">JOIN US</p>
-                <h2>The Wedding Venue</h2>
+                        <div class="gold-divider" aria-hidden="true">
+                            <span>✦</span>
+                        </div>
 
-                <div class="gold-divider" aria-hidden="true">
-                    <span>✦</span>
+                        <p class="venue-name">
+                            Punarnava Resort
+                        </p>
+
+                        <p class="venue-location">
+                            Dehradun
+                        </p>
+
+                        <p class="venue-date">
+                            December 16 &amp; 17, 2026
+                        </p>
+
+                        <a
+                            class="venue-location-btn"
+                            href="https://www.google.com/maps/search/?api=1&query=Punarnava+Resort+Dehradun"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="View Punarnava Resort location on Google Maps"
+                        >
+                            <svg class="venue-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>VIEW LOCATION</span>
+                        </a>
+                    </div>
                 </div>
-
-                <p class="venue-name">
-                    Punarnava Resort
-                </p>
-
-                <p class="venue-location">
-                    Dehradun
-                </p>
-
-                <p class="venue-date">
-                    December 16 &amp; 17, 2026
-                </p>
-
-                <a
-                    class="gold-button"
-                    href="https://www.google.com/maps/search/?api=1&query=Punarnava+Resort+Dehradun"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View Location
-                </a>
-
             </div>
 
         </section>

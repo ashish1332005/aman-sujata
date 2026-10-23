@@ -7,36 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
     // 1. ELEMENTS
-    const intro = document.getElementById("intro");
-    const envelope = document.getElementById("envelope");
-    const openInvitation = document.getElementById("openInvitation");
     const weddingSite = document.getElementById("weddingSite");
-
-    // 2. ENVELOPE OPENING
-    if (intro && envelope && openInvitation) {
-        openInvitation.addEventListener("click", () => {
-            if (openInvitation.disabled) return;
-
-            openInvitation.disabled = true;
-            envelope.classList.add("open");
-            openInvitation.textContent = "Opening Your Invitation...";
-
-            window.setTimeout(() => {
-                intro.classList.add("hide");
-                document.body.classList.remove("locked");
-
-                if (weddingSite) {
-                    weddingSite.classList.add("is-open");
-                }
-
-                startRevealObserver();
-
-                window.setTimeout(() => {
-                    intro.style.display = "none";
-                }, 1000);
-            }, 850);
-        });
-    }
 
     // 3. GOLD PARTICLES
     function createGoldParticles() {
@@ -916,21 +887,23 @@ if (countdownScratchBox && countdownScratchCanvas) {
 }
 
 
-/* ===== VIDEO INTRO CONTROLLER ===== */
+/* ===== VIDEO INTRO CONTROLLER (TAP TO OPEN) ===== */
 
 const intro = document.getElementById("intro");
 const introVideo = document.getElementById("introVideo");
+const videoTapOverlay = document.getElementById("videoTapOverlay");
 const weddingSite = document.getElementById("weddingSite");
 const skipIntro = document.getElementById("skipIntro");
 
 let introFinished = false;
-let introTimer;
 
 function finishIntro() {
     if (introFinished) return;
-
     introFinished = true;
-    clearTimeout(introTimer);
+
+    if (introVideo) {
+        try { introVideo.pause(); } catch (e) {}
+    }
 
     if (intro) {
         intro.classList.add("hide");
@@ -942,10 +915,6 @@ function finishIntro() {
         weddingSite.classList.add("is-open");
     }
 
-    if (typeof startRevealObserver === "function") {
-        startRevealObserver();
-    }
-
     window.setTimeout(() => {
         if (intro) {
             intro.style.display = "none";
@@ -953,26 +922,86 @@ function finishIntro() {
     }, 850);
 }
 
-if (intro && introVideo) {
-    // Continue when video ends
-    introVideo.addEventListener("ended", finishIntro, { once: true });
-
-    // Show the website after 6 seconds even if video is longer
-    introTimer = window.setTimeout(finishIntro, 6000);
-
-    // If the video fails to load, don't block the website
-    introVideo.addEventListener("error", finishIntro, { once: true });
-
-    // Start playback; muted video supports autoplay in most browsers
-    const playPromise = introVideo.play();
-
-    if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-            // Keep the 6-second fallback so the site can still open
-        });
+function startIntroPlayback() {
+    if (videoTapOverlay) {
+        videoTapOverlay.classList.add("hidden");
     }
+    if (skipIntro) {
+        skipIntro.style.display = "block";
+    }
+    if (introVideo) {
+        introVideo.currentTime = 0;
+        const playPromise = introVideo.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch((err) => {
+                console.warn("Playback error:", err);
+            });
+        }
+    }
+}
+
+if (videoTapOverlay) {
+    videoTapOverlay.addEventListener("click", startIntroPlayback);
+    videoTapOverlay.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            startIntroPlayback();
+        }
+    });
+}
+
+if (introVideo) {
+    introVideo.addEventListener("ended", finishIntro, { once: true });
+    introVideo.addEventListener("error", finishIntro, { once: true });
 }
 
 if (skipIntro) {
     skipIntro.addEventListener("click", finishIntro);
+}
+
+/* ===== COUPLE VIDEO CONTROLLER (plays once only) ===== */
+
+const coupleVideoEl = document.getElementById("coupleVideoEl");
+const coupleVideoOverlay = document.getElementById("coupleVideoOverlay");
+
+let coupleVideoPlayed = false;
+
+function playCoupleVideo() {
+    if (!coupleVideoEl) return;
+    coupleVideoEl.play().then(() => {
+        if (coupleVideoOverlay) coupleVideoOverlay.classList.add("hidden");
+        coupleVideoPlayed = true;
+    }).catch(() => {});
+}
+
+if (coupleVideoOverlay && coupleVideoEl) {
+    // Tap on overlay plays it
+    coupleVideoOverlay.addEventListener("click", playCoupleVideo);
+
+    // Tap on video while playing toggles pause
+    coupleVideoEl.addEventListener("click", () => {
+        if (!coupleVideoEl.paused) {
+            coupleVideoEl.pause();
+            if (coupleVideoOverlay) coupleVideoOverlay.classList.remove("hidden");
+        } else if (!coupleVideoEl.ended) {
+            playCoupleVideo();
+        }
+    });
+
+    // When video ends — show overlay again so user knows it finished
+    coupleVideoEl.addEventListener("ended", () => {
+        if (coupleVideoOverlay) coupleVideoOverlay.classList.remove("hidden");
+    });
+
+    // Auto-play once when it scrolls into view (plays only the first time)
+    if ("IntersectionObserver" in window) {
+        const coupleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !coupleVideoPlayed) {
+                    playCoupleVideo();
+                }
+            });
+        }, { threshold: 0.4 });
+        coupleObserver.observe(coupleVideoEl);
+    }
 }
