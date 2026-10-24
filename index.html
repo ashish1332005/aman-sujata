@@ -525,6 +525,53 @@
                     </span>
                 </div>
 
+                <div class="rsvp-divider" aria-hidden="true">
+                    <span>✦</span>
+                </div>
+
+                <form id="rsvpForm" class="rsvp-form" novalidate>
+                    <div class="form-group">
+                        <label for="guestName">YOUR FULL NAME</label>
+                        <input
+                            type="text"
+                            id="guestName"
+                            name="guestName"
+                            placeholder="Enter your name"
+                            required
+                            autocomplete="name"
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guestCount">NUMBER OF GUESTS</label>
+                            <select id="guestCount" name="guestCount" required>
+                                <option value="" disabled selected>Select guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attendance">WILL YOU ATTEND?</label>
+                            <select id="attendance" name="attendance" required>
+                                <option value="" disabled selected>Select response</option>
+                                <option value="Yes">Joyfully Accepts</option>
+                                <option value="No">Regretfully Declines</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="gold-button rsvp-submit-btn">
+                        <span>CONFIRM RSVP</span>
+                    </button>
+
+                    <p id="rsvpMessage" class="rsvp-message" role="status" aria-live="polite"></p>
+                </form>
+
             </div>
         </section>
 

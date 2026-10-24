@@ -1363,46 +1363,124 @@ select:focus-visible {
     color: var(--gold);
 }
 
+.rsvp-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 28px auto 22px;
+    color: #a8823d;
+    font-size: 13px;
+}
+
+.rsvp-divider::before,
+.rsvp-divider::after {
+    content: "";
+    width: clamp(35px, 8vw, 60px);
+    height: 1px;
+    background: linear-gradient(to right, transparent, #b88e44, transparent);
+}
+
 #rsvpForm {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
     text-align: left;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
 }
 
 #rsvpForm label {
-    margin-top: 7px;
-    color: var(--brown);
+    color: #5c3c1a;
+    font-family: var(--heading-font);
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 #rsvpForm input,
 #rsvpForm select {
     width: 100%;
-    min-height: 45px;
-    padding: 11px 12px;
-    border: 1px solid var(--border);
-    border-radius: 0;
-    background: #fffdf9;
-    color: var(--text);
-    font-size: 12px;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1px solid rgba(184, 142, 68, 0.4);
+    border-radius: 4px;
+    background: #fffdfa;
+    color: #2b1708;
+    font-family: var(--body-font);
+    font-size: 13.5px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+#rsvpForm input:focus,
+#rsvpForm select:focus {
+    outline: none;
+    border-color: #a8823d;
+    box-shadow: 0 0 0 3px rgba(184, 142, 68, 0.15);
+    background: #ffffff;
 }
 
 #rsvpForm input::placeholder {
-    color: #b2a596;
+    color: #b39f88;
+    font-style: italic;
+    font-size: 12.5px;
 }
 
-#rsvpForm .gold-button {
+.rsvp-submit-btn {
     width: 100%;
-    margin-top: 14px;
+    margin-top: 10px;
+    padding: 13px 20px;
+    font-family: var(--heading-font);
+    font-size: 12px;
+    letter-spacing: 2.2px;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg, #a77f3a 0%, #7e591e 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 235, 185, 0.45);
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(70, 45, 15, 0.22);
+    transition: all 0.3s ease;
+}
+
+.rsvp-submit-btn:hover {
+    background: linear-gradient(135deg, #b88d44 0%, #8c6422 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(70, 45, 15, 0.3);
 }
 
 .rsvp-message {
-    min-height: 20px;
-    color: var(--gold-dark);
-    font-size: 11px;
+    min-height: 24px;
+    color: #6a4c28;
+    font-family: var(--heading-font);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     text-align: center;
+    margin: 8px 0 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 540px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
 }
 
 /* =========================================
