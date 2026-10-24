@@ -47,24 +47,21 @@
 
     <div class="video-overlay" aria-hidden="true"></div>
 
-    <!-- Wax Seal Tap Overlay — directly on the video, no box -->
+    <!-- Wax Seal Tap Overlay — ripples on the wax seal, prompt in the blank lower area -->
     <div id="videoTapOverlay" class="video-tap-overlay" role="button" tabindex="0" aria-label="Tap to open invitation video">
-        <!-- Ripple rings pulse outward from the seal -->
-        <span class="seal-ripple seal-ripple-1" aria-hidden="true"></span>
-        <span class="seal-ripple seal-ripple-2" aria-hidden="true"></span>
-
-        <!-- The seal itself -->
-        <div class="video-seal" aria-hidden="true">
-            <svg class="seal-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer decorative ring -->
-                <circle cx="60" cy="60" r="57" stroke="#e2c387" stroke-width="1.2" stroke-dasharray="5 3" opacity="0.85"/>
-                <!-- Solid wax disc -->
-                <circle cx="60" cy="60" r="46" fill="rgba(197,160,89,0.22)" stroke="#e2c387" stroke-width="1.5"/>
-            </svg>
+        <!-- Pulse ripples positioned directly on the envelope's wax seal -->
+        <div class="seal-ripple-anchor" aria-hidden="true">
+            <span class="seal-ripple seal-ripple-1"></span>
+            <span class="seal-ripple seal-ripple-2"></span>
+            <span class="seal-glow-disc"></span>
         </div>
 
-        <!-- Text directly under the seal -->
-        <p class="seal-tap-text">TAP TO OPEN</p>
+        <!-- TAP TO OPEN button / prompt placed in the blank lower area of the envelope -->
+        <div class="tap-open-badge">
+            <span class="badge-ornament-leaf" aria-hidden="true">❦</span>
+            <p class="seal-tap-text">TAP TO OPEN</p>
+            <span class="badge-subtext">Tap anywhere to break the seal</span>
+        </div>
     </div>
 
     <button
