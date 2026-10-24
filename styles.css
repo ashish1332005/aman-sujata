@@ -612,13 +612,13 @@ select:focus-visible {
     position: relative;
     width: 100%;
     max-width: 520px;
-    aspect-ratio: 672 / 898;
+    aspect-ratio: 768 / 1024;
     background-image: url("assets/family-paper-bg.png");
     background-size: 100% 100%;
     background-position: center center;
     background-repeat: no-repeat;
-    /* Safe inner padding so no text touches borders, deckled edges, or corner flowers */
-    padding: clamp(38px, 9.5%, 58px) clamp(30px, 9.5%, 52px) clamp(32px, 8%, 48px);
+    /* Safe inner padding so no text touches borders, deckled edges, or corner flourishes */
+    padding: clamp(44px, 11%, 64px) clamp(34px, 10.5%, 54px) clamp(38px, 9.5%, 54px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2816,7 +2816,7 @@ select:focus-visible {
     position: relative;
     width: min(430px, 92vw);
     height: clamp(560px, 78vh, 660px);
-    aspect-ratio: 672 / 898;
+    aspect-ratio: 768 / 1024;
     border-radius: 0;
     box-sizing: border-box;
     overflow: visible;
