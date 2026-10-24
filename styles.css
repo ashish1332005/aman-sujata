@@ -3403,76 +3403,7 @@ select:focus-visible {
     }
 }
 
-/* TAP TO OPEN badge placed in the blank lower envelope area */
-.tap-open-badge {
-    position: absolute;
-    bottom: clamp(28px, 6.5vh, 60px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    padding: clamp(10px, 1.8vw, 14px) clamp(22px, 4vw, 34px);
-    background: rgba(255, 252, 246, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(197, 160, 89, 0.55);
-    border-radius: 999px;
-    box-shadow:
-        0 8px 24px rgba(60, 45, 20, 0.14),
-        0 2px 6px rgba(197, 160, 89, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
-    animation: badgeFloat 3.2s ease-in-out infinite;
-    transition: all 0.3s ease;
-    user-select: none;
-}
 
-.video-tap-overlay:hover .tap-open-badge {
-    background: rgba(255, 255, 255, 0.98);
-    border-color: rgba(197, 160, 89, 0.85);
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow:
-        0 12px 30px rgba(60, 45, 20, 0.2),
-        0 4px 12px rgba(197, 160, 89, 0.25);
-}
-
-@keyframes badgeFloat {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
-
-.badge-ornament-leaf {
-    color: #a8823d;
-    font-size: 13px;
-    line-height: 1;
-}
-
-.seal-tap-text {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(11.5px, 2.2vw, 14px);
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: #4a341e;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.badge-subtext {
-    font-family: var(--body-font);
-    font-size: clamp(9px, 1.6vw, 11px);
-    font-style: italic;
-    color: #7d654f;
-    letter-spacing: 0.5px;
-    margin: 0;
-    line-height: 1;
-}
 
 
 /* ===== PAPER-BG HERO CARD ===== */
