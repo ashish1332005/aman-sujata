@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 8. RSVP FORM (Google Sheets Integration)
     // Paste your Google Apps Script Web App URL below:
-    const GOOGLE_SHEET_RSVP_URL = "";
+    const GOOGLE_SHEET_RSVP_URL = "https://script.google.com/macros/s/AKfycbzYnG9z06zhD1lS5VVa5qEXAOGNmE0y2L0sOE8spZhIo-eFlVqaTTqewSTN1XaFKCqM/exec";
 
     const rsvpForm = document.getElementById("rsvpForm");
     const rsvpMessage = document.getElementById("rsvpMessage");
