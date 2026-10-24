@@ -431,12 +431,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initTimelineScrollObserver();
 
-    // 8. RSVP FORM
+    // 8. RSVP FORM (Google Sheets Integration)
+    // Paste your Google Apps Script Web App URL below:
+    const GOOGLE_SHEET_RSVP_URL = "";
+
     const rsvpForm = document.getElementById("rsvpForm");
     const rsvpMessage = document.getElementById("rsvpMessage");
+    const rsvpSubmitBtn = rsvpForm?.querySelector(".rsvp-submit-btn");
 
     if (rsvpForm) {
-        rsvpForm.addEventListener("submit", event => {
+        rsvpForm.addEventListener("submit", async event => {
             event.preventDefault();
 
             if (!rsvpForm.reportValidity()) return;
@@ -447,24 +451,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!guestName || !guestCount || !attendance) {
                 if (rsvpMessage) {
+                    rsvpMessage.className = "rsvp-message error";
                     rsvpMessage.textContent = "Please complete all fields.";
                 }
                 return;
             }
 
-            if (rsvpMessage) {
-                if (attendance === "Yes") {
-                    const guestLabel = Number(guestCount) === 1 ? "guest" : "guests";
+            const btnSpan = rsvpSubmitBtn?.querySelector("span");
+            const originalBtnText = btnSpan ? btnSpan.textContent : "CONFIRM RSVP";
 
+            if (rsvpSubmitBtn) {
+                rsvpSubmitBtn.disabled = true;
+                if (btnSpan) btnSpan.textContent = "SAVING RSVP...";
+            }
+            if (rsvpMessage) {
+                rsvpMessage.className = "rsvp-message";
+                rsvpMessage.textContent = "Submitting your response...";
+            }
+
+            const payload = {
+                guestName,
+                guestCount,
+                attendance,
+                submittedAt: new Date().toISOString()
+            };
+
+            if (GOOGLE_SHEET_RSVP_URL && GOOGLE_SHEET_RSVP_URL.trim().length > 0) {
+                try {
+                    // Send to Google Sheets web app (text/plain avoids CORS preflight)
+                    await fetch(GOOGLE_SHEET_RSVP_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "text/plain;charset=utf-8"
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.error("Error saving RSVP to Google Sheet:", err);
+                    if (rsvpSubmitBtn) {
+                        rsvpSubmitBtn.disabled = false;
+                        if (btnSpan) btnSpan.textContent = originalBtnText;
+                    }
+                    if (rsvpMessage) {
+                        rsvpMessage.className = "rsvp-message error";
+                        rsvpMessage.textContent = "Failed to submit RSVP. Please check your internet connection and try again.";
+                    }
+                    return;
+                }
+            } else {
+                // When URL is not yet configured, simulate a brief delay for preview
+                await new Promise(res => setTimeout(res, 500));
+                console.warn("GOOGLE_SHEET_RSVP_URL is empty. Deploy the Google Apps Script and paste URL in app.js.");
+            }
+
+            if (rsvpSubmitBtn) {
+                rsvpSubmitBtn.disabled = false;
+                if (btnSpan) btnSpan.textContent = originalBtnText;
+            }
+
+            if (rsvpMessage) {
+                rsvpMessage.className = "rsvp-message success";
+                const guestLabel = Number(guestCount) === 1 ? "guest" : "guests";
+                if (attendance === "Yes") {
                     rsvpMessage.textContent =
-                        `Thank you, ${guestName}! We look forward to celebrating with you (${guestCount} ${guestLabel}).`;
+                        `✦ Thank you, ${guestName}! Your RSVP is saved (${guestCount} ${guestLabel}). We look forward to celebrating together!`;
                 } else {
                     rsvpMessage.textContent =
-                        `Thank you for letting us know, ${guestName}. You will be missed!`;
+                        `✦ Thank you, ${guestName}. Your response has been recorded. You will be missed!`;
                 }
             }
 
-            // Demo only: RSVP is not stored or sent to anyone.
+            // Reset form fields
+            rsvpForm.reset();
         });
     }
 

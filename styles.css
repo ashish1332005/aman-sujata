@@ -1458,10 +1458,17 @@ select:focus-visible {
     transition: all 0.3s ease;
 }
 
-.rsvp-submit-btn:hover {
+.rsvp-submit-btn:hover:not(:disabled) {
     background: linear-gradient(135deg, #b88d44 0%, #8c6422 100%);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(70, 45, 15, 0.3);
+}
+
+.rsvp-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .rsvp-message {
@@ -1474,6 +1481,14 @@ select:focus-visible {
     text-align: center;
     margin: 8px 0 0;
     transition: all 0.3s ease;
+}
+
+.rsvp-message.error {
+    color: #b02a37;
+}
+
+.rsvp-message.success {
+    color: #216e39;
 }
 
 @media (max-width: 540px) {
