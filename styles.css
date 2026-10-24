@@ -1526,7 +1526,28 @@ select:focus-visible {
     padding-top: 17px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #c6b59a;
-    font-size: 10px;
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 1.2px;
+}
+
+.footer .copyright strong {
+    color: #e2c387;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.footer .copyright-phone {
+    color: #d4b679;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: color 0.25s ease;
+}
+
+.footer .copyright-phone:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
 /* =========================================
